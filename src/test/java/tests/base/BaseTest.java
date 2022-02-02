@@ -1,43 +1,35 @@
 package tests.base;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import com.codeborne.selenide.Configuration;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import pages.LoginPage;
+import utils.PropertyReader;
 
-import java.util.concurrent.TimeUnit;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
 public class BaseTest {
 
-    public WebDriver driver;
     public LoginPage loginPage;
 
-    @BeforeMethod
-    @Step("Browser launch")
-    public void setUp(ITestContext testContext) {
+    @BeforeClass
+    public void setUp() {
 
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        testContext.setAttribute("driver", driver);
+        Configuration.baseUrl = System.getenv().getOrDefault("FINALSURGE_URL", PropertyReader.getProperty("finalsurge.url"));
+        Configuration.browser = "firefox";
+        Configuration.clickViaJs = true;
+        Configuration.timeout = 100000;
+        Configuration.savePageSource = false;
 
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
 
     }
 
-    @AfterMethod
-    @Step("Browser quit")
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
 
-        driver.quit();
+        getWebDriver().quit();
     }
 
 }
