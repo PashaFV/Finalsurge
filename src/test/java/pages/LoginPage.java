@@ -32,5 +32,13 @@ public class LoginPage extends BasePage{
         $(LOGIN_BUTTON).click();
     }
 
+    @Step("Login as user '{userName}' use password '{password}'")
+    public void loginWithInvalidData() {
+
+        $(EMAIL_INPUT).sendKeys("test123@gmail.com");
+        $(PASSWORD_INPUT).setValue("234231qwe");
+        $(LOGIN_BUTTON).click();
+    }
+
 
 }
