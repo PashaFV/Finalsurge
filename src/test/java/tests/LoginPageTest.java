@@ -17,4 +17,12 @@ public class LoginPageTest extends BaseTest {
 
     }
 
+    @Test(description = "Login with invalid data to finalsurge.com")
+    public void InvalidLoginTest() {
+        loginPage.openPage();
+        loginPage.loginWithInvalidData();
+        $(By.xpath("//strong[text()='Invalid login credentials. Please try again.']")).shouldBe(visible);
+
+    }
+
 }
