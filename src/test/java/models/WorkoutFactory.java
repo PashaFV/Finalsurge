@@ -10,22 +10,23 @@ public class WorkoutFactory {
 
     static Faker faker = new Faker();
 
-//    public static Workout get(){
-//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//        LocalDateTime now = LocalDateTime.now();
-//        System.out.println(dtf.format(now));
-//        return Workout.builder()
-//                .date(dtf.format(now))
-//                .timeOfDay()
-//                .activityType()
-//                .workoutName()
-//                .workoutDescription()
-//                .distance()
-//                .duration()
-//                .pace()
-//                .howIFelt()
-//                .perceivedEffort()
-//                .postWorkoutNotesResults()
-//                .build();
-//    }
+    public static Workout get(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter duration = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(dtf.format(now));
+        return Workout.builder()
+                .date(dtf.format(now))
+                .timeOfDay("12:00 PM")
+                .activityType("Run")
+                .workoutName(faker.esports().event())
+                .workoutDescription(faker.weather().description())
+                .distance(String.valueOf(faker.number().numberBetween(1, 10)))
+                .duration(duration.format(now))
+                //.pace()
+                .howIFelt("Great")
+                .perceivedEffort("3 (Light)")
+                .postWorkoutNotesResults(faker.superhero().descriptor())
+                .build();
+    }
 }

@@ -1,5 +1,7 @@
 package tests;
 
+import models.Workout;
+import models.WorkoutFactory;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.CalendarPage;
@@ -18,7 +20,8 @@ public class CalendarTest extends BaseTest {
         calendarPage.openPage();
         calendarPage.addNewQuickWorkout();
         calendarPage.workoutAddHeader().shouldBe(visible);
-
+        Workout workout = WorkoutFactory.get();
+        calendarPage.create(workout);
     }
 
 }

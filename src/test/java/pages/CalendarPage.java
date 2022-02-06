@@ -1,11 +1,15 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import elements.Input;
 import io.qameta.allure.Step;
+import models.Workout;
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class CalendarPage extends BasePage{
 
@@ -23,8 +27,9 @@ public class CalendarPage extends BasePage{
     }
     @Step("Add new quick workout")
     public void addNewQuickWorkout() {
-
-        $(ADD_BUTTON).click();
+        Actions action = new Actions(getWebDriver());
+        action.moveToElement($(ADD_BUTTON)).click().build().perform();
+//        $(ADD_BUTTON).click();
         $(QUICK_ADD_LOCATOR).click();
 
     }
@@ -35,6 +40,18 @@ public class CalendarPage extends BasePage{
 
     public SelenideElement workoutAddHeader(){
         return $(WORKOUT_ADD_HEADER);
+    }
+
+    public void create(Workout workout){
+
+        new Input("#WorkoutDate").write(workout.getDate());
+        new Input("#WorkoutTime").write(workout.getTimeOfDay());
+        new Input("#Name").write(workout.getWorkoutName());
+        new Input("#Distance").write(workout.getDistance());
+        new Input("#Duration").write(workout.getDuration());
+        //new Input("#Pace").write(workout.getPace()); TODO добавить pace в WorkoutFactory
+
+
     }
 
 
