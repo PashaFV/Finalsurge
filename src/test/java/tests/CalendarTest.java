@@ -8,7 +8,7 @@ import tests.base.BaseTest;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class CalendarPageTest extends BaseTest {
+public class CalendarTest extends BaseTest {
 
     @Test(description = "Login with valid data to finalsurge.com")
     public void AddWorkoutTest() {
@@ -17,7 +17,7 @@ public class CalendarPageTest extends BaseTest {
         loginPage.login();
         calendarPage.openPage();
         calendarPage.addNewQuickWorkout();
-        $(By.xpath("//h4[@id='WorkoutAddHeader']")).shouldBe(visible);
+        calendarPage.workoutAddHeader().shouldBe(visible);
 
     }
 
