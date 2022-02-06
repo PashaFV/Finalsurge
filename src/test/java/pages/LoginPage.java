@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,9 @@ public class LoginPage extends BasePage{
     public static final By EMAIL_INPUT = By.xpath("//input[@id='login_name']");
     public static final By PASSWORD_INPUT = By.xpath("//input[@id='login_password']");
     public static final By LOGIN_BUTTON = By.xpath("//button[@type='submit']");
+    public static final By INVALID_CRED_TEXT = By.xpath("//strong[text()='Invalid login credentials. Please try again.']");
+    public static final By SUCCESS_LOGOUT_TEXT = By.xpath("//div//strong[text()='You have been successfully logged out of the system.']");
+
 
     public String email, password;
 
@@ -38,6 +42,14 @@ public class LoginPage extends BasePage{
         $(EMAIL_INPUT).sendKeys("test123@gmail.com");
         $(PASSWORD_INPUT).setValue("234231qwe");
         $(LOGIN_BUTTON).click();
+    }
+
+    public SelenideElement invalidCredText(){
+        return $(INVALID_CRED_TEXT);
+    }
+
+    public SelenideElement successLogoutText(){
+        return $(SUCCESS_LOGOUT_TEXT);
     }
 
 
