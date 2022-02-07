@@ -1,16 +1,12 @@
 package tests;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pages.CalendarPage;
-import pages.LoginPage;
 import tests.base.BaseTest;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
+
 
 public class LoginTest extends BaseTest {
 
@@ -21,19 +17,31 @@ public class LoginTest extends BaseTest {
         calendarPage.userInfo().shouldBe(visible);
     }
 
-    @Test(description = "Login with invalid data to finalsurge.com")
-    public void invalidLoginTest() {
-        loginPage.openPage();
-        loginPage.loginWithInvalidData();
-        loginPage.invalidCredText().shouldBe(visible);
-    }
-
-    @Test
+    @Test(description = "Logout after success login to finalsurge.com")
     public void logoutTest(){
         loginPage.openPage();
         loginPage.login();
         calendarPage.logout();
         loginPage.successLogoutText().shouldHave(text("You have been successfully logged out of the system."));
+    }
+
+    @Test(dataProvider = "loginData", description = "Login with invalid data to finalsurge.com")
+    public void invalidLoginTest(String userName, String password, String errorMessage) {
+        loginPage.openPage();
+        loginPage.loginWithInvalidData(userName, password);
+        loginPage.invalidCredText().shouldBe(visible);
+        loginPage.invalidCredText().shouldHave(text(errorMessage));
+
+    }
+
+    @DataProvider(name = "loginData")
+    public Object[][] loginData() {
+        return new Object[][]{
+                {"", "test1234", "Please enter your e-mail address."},
+                {"test@ya.ru", "", "Please enter a password."},
+                {"usertest@ya.ru", "12345678", "Invalid login credentials. Please try again."},
+                {"", "", "Please enter your e-mail address."},
+        };
     }
 
 
