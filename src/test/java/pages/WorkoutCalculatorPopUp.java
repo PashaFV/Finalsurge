@@ -4,7 +4,11 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.switchTo;
 
 public class WorkoutCalculatorPopUp extends BasePage {
 
@@ -22,10 +26,11 @@ public class WorkoutCalculatorPopUp extends BasePage {
     public void calculateRunningIntensity() {
 
         $(WORKOUT_CALCULATOR_BUTTON).click();
-        $(MILE_RADIO_BUTTON).click();
-        $(HOURS_INPUT).sendKeys("0");
+        switchTo().frame($("[id='IntensityCalciFrame']"));
+        $(HOURS_INPUT).setValue("00");
         $(MINUTES_INPUT).sendKeys("12");
         $(SECONDS_INPUT).sendKeys("00");
+        $(MILE_RADIO_BUTTON).click();
         $(CALCULATE_PACES_BUTTON).click();
 
     }

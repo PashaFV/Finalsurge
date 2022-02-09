@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 public class WorkoutCalculator extends BaseTest {
 
     @Test(description = "Calculation your running intensity")
-    public void AddWorkoutTest() {
+    public void calculation() {
 
         loginPage.openPage();
         loginPage.login();
