@@ -12,7 +12,7 @@ public class WorkoutFactory {
 
     public static Workout get(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter duration = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter duration = DateTimeFormatter.ofPattern("mm:ss");
         LocalDateTime now = LocalDateTime.now();
         System.out.println(dtf.format(now));
         return Workout.builder()
@@ -22,7 +22,9 @@ public class WorkoutFactory {
                 .workoutName(faker.esports().event())
                 .workoutDescription(faker.weather().description())
                 .distance(String.valueOf(faker.number().numberBetween(1, 10)))
+                .distanceMeasure("km")
                 .duration(duration.format(now))
+                .paceMeasure("min/km")
                 //.pace()
                 .howIFelt("Great")
                 .perceivedEffort("3 (Light)")

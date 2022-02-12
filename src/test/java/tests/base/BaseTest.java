@@ -24,7 +24,7 @@ public class BaseTest {
         Configuration.baseUrl = System.getenv().getOrDefault("FINALSURGE_URL", PropertyReader.getProperty("finalsurge.url"));
         Configuration.browser = "chrome";
         Configuration.clickViaJs = true;
-        Configuration.timeout = 100000;
+        Configuration.timeout = 20000;
         Configuration.savePageSource = false;
 
         loginPage = new LoginPage();
