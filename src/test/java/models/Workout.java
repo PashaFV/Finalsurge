@@ -16,8 +16,10 @@ public class Workout {
     String workoutName;
     String workoutDescription;
     String distance;
+    String distanceMeasure;
     String duration;
     String pace;
+    String paceMeasure;
     String howIFelt;
     String perceivedEffort; //Perceived Effort
     String postWorkoutNotesResults; //Post Workout Notes/Results
