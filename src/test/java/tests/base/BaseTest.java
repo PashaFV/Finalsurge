@@ -7,6 +7,7 @@ import org.testng.annotations.Listeners;
 import pages.CalendarPage;
 import pages.LoginPage;
 import pages.WorkoutCalculatorPopUp;
+import pages.WorkoutLibraryPage;
 import utils.PropertyReader;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -16,6 +17,7 @@ public class BaseTest {
 
     public LoginPage loginPage;
     public CalendarPage calendarPage;
+    public WorkoutLibraryPage workoutLibraryPage;
     public WorkoutCalculatorPopUp workoutCalculatorPopUp;
 
     @BeforeClass
@@ -29,6 +31,7 @@ public class BaseTest {
 
         loginPage = new LoginPage();
         calendarPage = new CalendarPage();
+        workoutLibraryPage = new WorkoutLibraryPage();
         workoutCalculatorPopUp = new WorkoutCalculatorPopUp();
 
     }

@@ -39,8 +39,8 @@ public class LoginPage extends BasePage {
     @Step("Login as user '{userName}' use password '{password}'")
     public void loginWithInvalidData(String email, String password) {
 
-        $(EMAIL_INPUT).sendKeys(email);
-        $(PASSWORD_INPUT).sendKeys(password);
+        $(EMAIL_INPUT).setValue(email);
+        $(PASSWORD_INPUT).setValue(password);
         $(LOGIN_BUTTON).click();
     }
 
