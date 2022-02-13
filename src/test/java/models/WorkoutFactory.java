@@ -19,7 +19,7 @@ public class WorkoutFactory {
                 .date(dtf.format(now))
                 .timeOfDay("12:00 PM")
                 .activityType("Run")
-                .workoutName(faker.esports().event())
+                .workoutName(faker.esports().event() + duration.format(now))
                 .workoutDescription(faker.weather().description())
                 .distance(String.valueOf(faker.number().numberBetween(1, 10)))
                 .distanceMeasure("km")

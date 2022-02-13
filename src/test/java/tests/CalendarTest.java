@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class CalendarTest extends BaseTest {
 
     @Test(description = "Login with valid data to finalsurge.com")
-    public void AddWorkoutTest() {
+    public void quickAddWorkoutTest() {
 
         loginPage.openPage();
         loginPage.login();
@@ -28,5 +28,26 @@ public class CalendarTest extends BaseTest {
 
         calendarPage.successQuickAddWorkoutText().shouldHave(text("*The workout was successfully saved to your Workout Library"));
     }
+
+    @Test(description = "Check if a quick added workout is saved to the workout library")
+    public void quickAddedWorkoutShouldHaveSavedToLibrary() {
+
+        loginPage.openPage();
+        loginPage.login();
+        calendarPage.openPage();
+        calendarPage.openQuickAddWorkoutForm();
+        calendarPage.workoutAddHeader().shouldBe(visible);
+
+        Workout workout = WorkoutFactory.get();
+        calendarPage.createQuickAddWorkout(workout);
+
+        calendarPage.successQuickAddWorkoutText().shouldHave(text("*The workout was successfully saved to your Workout Library"));
+
+        workoutLibraryPage.openPage();
+
+        workoutLibraryPage.createdWorkoutLibraryName(workout).shouldHave(text(workout.getWorkoutName()));
+        workoutLibraryPage.createdWorkoutLibraryDesc(workout).shouldHave(text(workout.getWorkoutDescription()));
+    }
+
 
 }

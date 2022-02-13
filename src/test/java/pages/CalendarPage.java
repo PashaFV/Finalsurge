@@ -25,7 +25,7 @@ public class CalendarPage extends BasePage{
 
     @Step("Open calendar page ")
     public void openPage() {
-        open("/calendar");
+        open("/Calendar");
 
     }
     @Step("Add new quick workout")
@@ -52,7 +52,7 @@ public class CalendarPage extends BasePage{
         new Input("#Name").write(workout.getWorkoutName());
         new Input("#Distance").write(workout.getDistance());
         new Input("#Duration").write(workout.getDuration());
-        new Input("#Desc").write(workout.getDuration());
+        new Input("#Desc").write(workout.getWorkoutDescription());
         new Input("#PostDesc").write(workout.getDuration());
         //new Input("#Pace").write(workout.getPace()); TODO добавить pace в WorkoutFactory
         new Dropdown("#ActivityType").selectOption(workout.getActivityType());
