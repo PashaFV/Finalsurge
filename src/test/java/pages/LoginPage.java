@@ -31,8 +31,8 @@ public class LoginPage extends BasePage {
 
         email = System.getenv().getOrDefault("FINALSURGE_EMAIL", PropertyReader.getProperty("finalsurge.email"));
         password = System.getenv().getOrDefault("FINALSURGE_PASSWORD", PropertyReader.getProperty("finalsurge.password"));
-        $(EMAIL_INPUT).sendKeys(email);
-        $(PASSWORD_INPUT).sendKeys(password);
+        $(EMAIL_INPUT).setValue(email);
+        $(PASSWORD_INPUT).setValue(password);
         $(LOGIN_BUTTON).click();
     }
 

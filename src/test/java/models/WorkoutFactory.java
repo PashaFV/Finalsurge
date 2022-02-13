@@ -11,7 +11,7 @@ public class WorkoutFactory {
     static Faker faker = new Faker();
 
     public static Workout get(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DateTimeFormatter duration = DateTimeFormatter.ofPattern("mm:ss");
         LocalDateTime now = LocalDateTime.now();
         System.out.println(dtf.format(now));
