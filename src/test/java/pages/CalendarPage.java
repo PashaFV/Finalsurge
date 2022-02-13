@@ -20,7 +20,7 @@ public class CalendarPage extends BasePage{
     public static final By USER_INFO = By.xpath("//div[@class='user-info']");
     public static final By WORKOUT_ADD_HEADER = By.xpath("//h4[@id='WorkoutAddHeader']");
     public static final By LOGOUT_LINK = By.xpath("//div[@class='user-info']//a[text()='Logout']");
-    public static final By SUCCESS_QUICK_ADD_WORKOUT_TEXT = By.xpath("//div[@class='user-info']//a[text()='Logout']");
+    public static final By SUCCESS_QUICK_ADD_WORKOUT_TEXT = By.xpath("//div[@class='alert alert-success']");
 
 
     @Step("Open calendar page ")
