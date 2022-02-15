@@ -4,10 +4,7 @@ import com.codeborne.selenide.Configuration;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
-import pages.CalendarPage;
-import pages.LoginPage;
-import pages.WorkoutCalculatorPopUp;
-import pages.WorkoutLibraryPage;
+import pages.*;
 import utils.PropertyReader;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -19,6 +16,11 @@ public class BaseTest {
     public CalendarPage calendarPage;
     public WorkoutLibraryPage workoutLibraryPage;
     public WorkoutCalculatorPopUp workoutCalculatorPopUp;
+    public IntensityCalculatorTab intensityCalculatorTab;
+    public HansonsCalculatorTab hansonsCalculatorTab;
+    public McMillanCalculatorTab mcMillanCalculatorTab;
+    public PalladinoCalculatorTab palladinoCalculatorTab;
+    public TinmanCalculatorTab tinmanCalculatorTab;
 
     @BeforeClass
     public void setUp() {
@@ -33,6 +35,11 @@ public class BaseTest {
         calendarPage = new CalendarPage();
         workoutLibraryPage = new WorkoutLibraryPage();
         workoutCalculatorPopUp = new WorkoutCalculatorPopUp();
+        intensityCalculatorTab = new IntensityCalculatorTab();
+        hansonsCalculatorTab = new HansonsCalculatorTab();
+        mcMillanCalculatorTab = new McMillanCalculatorTab();
+        palladinoCalculatorTab = new PalladinoCalculatorTab();
+        tinmanCalculatorTab = new TinmanCalculatorTab();
 
     }
 
