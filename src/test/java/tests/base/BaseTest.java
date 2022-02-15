@@ -21,6 +21,8 @@ public class BaseTest {
     public McMillanCalculatorTab mcMillanCalculatorTab;
     public PalladinoCalculatorTab palladinoCalculatorTab;
     public TinmanCalculatorTab tinmanCalculatorTab;
+    public WorkoutUpdatePage workoutUpdatePage;
+    public WorkoutDetailsPage workoutDetailsPage;
 
     @BeforeClass
     public void setUp() {
@@ -40,6 +42,8 @@ public class BaseTest {
         mcMillanCalculatorTab = new McMillanCalculatorTab();
         palladinoCalculatorTab = new PalladinoCalculatorTab();
         tinmanCalculatorTab = new TinmanCalculatorTab();
+        workoutUpdatePage = new WorkoutUpdatePage();
+        workoutDetailsPage = new WorkoutDetailsPage();
 
     }
 
