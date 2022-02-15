@@ -21,7 +21,10 @@ public class CalendarPage extends BasePage{
     public static final By WORKOUT_ADD_HEADER = By.xpath("//h4[@id='WorkoutAddHeader']");
     public static final By LOGOUT_LINK = By.xpath("//div[@class='user-info']//a[text()='Logout']");
     public static final By SUCCESS_QUICK_ADD_WORKOUT_TEXT = By.xpath("//div[@class='alert alert-success']");
-
+    public static final String HEADER_MONTH_LINK = "#dpMonth";
+    public static final By PREV_MONTH_BUTTON = By.xpath("//i[contains(@class,'icon-chevron-left')]");
+    String chosenWorkout = "//div[@data-title='%s']";
+    String workoutContextMenuItem = "//div[@data-title='%s']/../../ul//a[text()='%s']";
 
     @Step("Open calendar page ")
     public void openPage() {
@@ -85,5 +88,16 @@ public class CalendarPage extends BasePage{
         return $(SUCCESS_QUICK_ADD_WORKOUT_TEXT);
     }
 
+    public void goToPrevMonth() {
+        $(PREV_MONTH_BUTTON).click();
+    }
 
+    public SelenideElement chosenMonth() {
+        return $(HEADER_MONTH_LINK);
+    }
+
+    public void goToUpdateFormOfCreatedWorkout(String workoutName) {
+        $(By.xpath(String.format(chosenWorkout, workoutName))).click();
+        $(By.xpath(String.format(workoutContextMenuItem, workoutName, "Update Workout"))).click();
+    }
 }

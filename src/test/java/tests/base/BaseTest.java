@@ -4,10 +4,7 @@ import com.codeborne.selenide.Configuration;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
-import pages.CalendarPage;
-import pages.LoginPage;
-import pages.WorkoutCalculatorPopUp;
-import pages.WorkoutLibraryPage;
+import pages.*;
 import utils.PropertyReader;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -19,6 +16,8 @@ public class BaseTest {
     public CalendarPage calendarPage;
     public WorkoutLibraryPage workoutLibraryPage;
     public WorkoutCalculatorPopUp workoutCalculatorPopUp;
+    public WorkoutUpdatePage workoutUpdatePage;
+    public WorkoutDetailsPage workoutDetailsPage;
 
     @BeforeClass
     public void setUp() {
@@ -33,7 +32,8 @@ public class BaseTest {
         calendarPage = new CalendarPage();
         workoutLibraryPage = new WorkoutLibraryPage();
         workoutCalculatorPopUp = new WorkoutCalculatorPopUp();
-
+        workoutUpdatePage = new WorkoutUpdatePage();
+        workoutDetailsPage = new WorkoutDetailsPage();
     }
 
     @AfterClass(alwaysRun = true)

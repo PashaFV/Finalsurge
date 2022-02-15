@@ -49,5 +49,17 @@ public class CalendarTest extends BaseTest {
         workoutLibraryPage.createdWorkoutLibraryDesc(workout).shouldHave(text(workout.getWorkoutDescription()));
     }
 
+    @Test(description = "Check if a month is changed in the calendar")
+    public void monthShouldBeChangedInCalendar(){
+        loginPage.openPage();
+        loginPage.login();
+        calendarPage.openPage();
+        String originalHeaderDateName = calendarPage.chosenMonth().getText();
+        calendarPage.goToPrevMonth();
+        calendarPage.chosenMonth().shouldNotHave(text(originalHeaderDateName));
+    }
+
+
+
 
 }
