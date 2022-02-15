@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
 
-public class McMillanCalculatorTab {
+public class McMillanCalculatorTab extends WorkoutCalculatorPopUp{
 
     public static final By HOURS_INPUT = By.xpath("//input[@id='TimeHH']");
     public static final By MINUTES_INPUT = By.xpath("//input[@id='TimeMM']");

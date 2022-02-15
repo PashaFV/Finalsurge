@@ -21,6 +21,9 @@ public class BaseTest {
     public McMillanCalculatorTab mcMillanCalculatorTab;
     public PalladinoCalculatorTab palladinoCalculatorTab;
     public TinmanCalculatorTab tinmanCalculatorTab;
+    public OtherCalculatorPopUp otherCalculatorPopUp;
+    public PaceCalculatorTab paceCalculatorTab;
+    public CaloricNeedsCalculatorTab caloricNeedsCalculatorTab;
     public WorkoutUpdatePage workoutUpdatePage;
     public WorkoutDetailsPage workoutDetailsPage;
 
@@ -42,6 +45,9 @@ public class BaseTest {
         mcMillanCalculatorTab = new McMillanCalculatorTab();
         palladinoCalculatorTab = new PalladinoCalculatorTab();
         tinmanCalculatorTab = new TinmanCalculatorTab();
+        otherCalculatorPopUp = new OtherCalculatorPopUp();
+        paceCalculatorTab = new PaceCalculatorTab();
+        caloricNeedsCalculatorTab = new CaloricNeedsCalculatorTab();
         workoutUpdatePage = new WorkoutUpdatePage();
         workoutDetailsPage = new WorkoutDetailsPage();
 

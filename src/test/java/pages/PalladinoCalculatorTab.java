@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class PalladinoCalculatorTab {
+public class PalladinoCalculatorTab extends WorkoutCalculatorPopUp{
 
     public static final By PALLADINO_TITLE_BUTTON = By.xpath("//a[text()='Palladino']");
     public static final By CRITICAL_POWER_INPUT = By.xpath("//input[@id='CP']");

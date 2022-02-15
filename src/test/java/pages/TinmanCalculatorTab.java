@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
 
-public class TinmanCalculatorTab {
+public class TinmanCalculatorTab extends WorkoutCalculatorPopUp{
 
     public static final By TINMAN_TITLE_BUTTON = By.xpath("//a[text()='Tinman']");
     public static final By MALE_RADIO_BUTTON = By.xpath("//input[@id='Male']");
