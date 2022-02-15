@@ -16,6 +16,11 @@ public class BaseTest {
     public CalendarPage calendarPage;
     public WorkoutLibraryPage workoutLibraryPage;
     public WorkoutCalculatorPopUp workoutCalculatorPopUp;
+    public IntensityCalculatorTab intensityCalculatorTab;
+    public HansonsCalculatorTab hansonsCalculatorTab;
+    public McMillanCalculatorTab mcMillanCalculatorTab;
+    public PalladinoCalculatorTab palladinoCalculatorTab;
+    public TinmanCalculatorTab tinmanCalculatorTab;
     public WorkoutUpdatePage workoutUpdatePage;
     public WorkoutDetailsPage workoutDetailsPage;
 
@@ -32,8 +37,14 @@ public class BaseTest {
         calendarPage = new CalendarPage();
         workoutLibraryPage = new WorkoutLibraryPage();
         workoutCalculatorPopUp = new WorkoutCalculatorPopUp();
+        intensityCalculatorTab = new IntensityCalculatorTab();
+        hansonsCalculatorTab = new HansonsCalculatorTab();
+        mcMillanCalculatorTab = new McMillanCalculatorTab();
+        palladinoCalculatorTab = new PalladinoCalculatorTab();
+        tinmanCalculatorTab = new TinmanCalculatorTab();
         workoutUpdatePage = new WorkoutUpdatePage();
         workoutDetailsPage = new WorkoutDetailsPage();
+
     }
 
     @AfterClass(alwaysRun = true)
