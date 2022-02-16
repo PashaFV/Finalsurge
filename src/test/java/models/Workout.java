@@ -13,6 +13,7 @@ public class Workout {
     String date;
     String timeOfDay;
     String activityType;
+    String activitySubType;
     String workoutName;
     String workoutDescription;
     String distance;

@@ -1,5 +1,7 @@
 package elements;
 
+import com.codeborne.selenide.SelenideElement;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class Input {
@@ -16,5 +18,9 @@ public class Input {
 
         $(id).clear();
         $(id).sendKeys(text);
+    }
+
+    public String read(){
+        return $(id).getValue();
     }
 }

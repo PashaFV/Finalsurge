@@ -24,4 +24,8 @@ public class Dropdown {
         //$(id).click();
         //$(By.xpath(String.format(optionLocator, id, option))).click();
     }
+
+    public String getOption(){
+        return $(id).getSelectedText();
+    }
 }

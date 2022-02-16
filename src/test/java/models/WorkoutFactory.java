@@ -11,14 +11,15 @@ public class WorkoutFactory {
     static Faker faker = new Faker();
 
     public static Workout get(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        DateTimeFormatter duration = DateTimeFormatter.ofPattern("mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/dd/yyyy");
+        DateTimeFormatter duration = DateTimeFormatter.ofPattern("m:ss");
         LocalDateTime now = LocalDateTime.now();
         System.out.println(dtf.format(now));
         return Workout.builder()
                 .date(dtf.format(now))
                 .timeOfDay("12:00 PM")
                 .activityType("Run")
+                .activitySubType("No Sub-Type")
                 .workoutName(faker.esports().event() + duration.format(now))
                 .workoutDescription(faker.weather().description())
                 .distance(String.valueOf(faker.number().numberBetween(1, 10)))
