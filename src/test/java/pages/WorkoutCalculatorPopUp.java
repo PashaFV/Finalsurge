@@ -14,7 +14,7 @@ public class WorkoutCalculatorPopUp extends BasePage {
     public static final By CLOSE_CALCULATOR_BUTTON = By.xpath("//div[@id='IntensityCalc']/a[@class='close-reveal-modal']");
     public static final By INTENSITY_TITLE_BUTTON = By.xpath("//button[text()='Intensity']");
     public static final By FINALSURGE_HEADER_LOGO = By.xpath("//img[@alt='Final Surge']");
-    public static final By ERROR_MESSAGE = By.xpath("//div/strong[text()='Please fix the following errors:']");
+    public static final By ERROR_MESSAGE = By.xpath("//div[@class='alert alert-error']");
 
     @Step("Open Pop-Up workout calculator")
     public void openCalculatorPopUp(){

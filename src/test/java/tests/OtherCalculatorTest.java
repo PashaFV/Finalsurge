@@ -25,7 +25,7 @@ public class OtherCalculatorTest extends BaseTest {
         otherCalculatorPopUp.openCalculatorPopUp();
         otherCalculatorPopUp.popUpTitleButton().shouldBe(visible);
         otherCalculatorPopUp.closeCalculatorPopUp();
-        workoutCalculatorPopUp.headerLogo().shouldBe(visible);
+        otherCalculatorPopUp.headerLogo().shouldBe(visible);
 
     }
 
