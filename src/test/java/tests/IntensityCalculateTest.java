@@ -28,7 +28,7 @@ public class IntensityCalculateTest extends BaseTest {
         workoutCalculatorPopUp.openCalculatorPopUp();
         workoutCalculatorPopUp.popUpTitleButton().shouldBe(visible);
         intensityCalculatorTab.calculateRunningIntensityWithInvalidData();
-        workoutCalculatorPopUp.getErrorMessage().shouldHave(text("Please fix the following errors:"));
+        workoutCalculatorPopUp.getErrorMessage().shouldHave(text("Your Marathon time cannot be less than 2:01:10 in order to use this calculator."));
 
     }
 

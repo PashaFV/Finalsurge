@@ -1,6 +1,7 @@
 package tests.base;
 
 import com.codeborne.selenide.Configuration;
+import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
@@ -9,7 +10,7 @@ import utils.PropertyReader;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-@Listeners(TestListener.class)
+@Log4j2
 public class BaseTest {
 
     public LoginPage loginPage;
@@ -26,15 +27,18 @@ public class BaseTest {
     public CaloricNeedsCalculatorTab caloricNeedsCalculatorTab;
     public WorkoutUpdatePage workoutUpdatePage;
     public WorkoutDetailsPage workoutDetailsPage;
+    public DefaultPage defaultPage;
 
     @BeforeClass
     public void setUp() {
+        log.info("Setup options and configurations.");
 
         Configuration.baseUrl = System.getenv().getOrDefault("FINALSURGE_URL", PropertyReader.getProperty("finalsurge.url"));
         Configuration.browser = "chrome";
         Configuration.clickViaJs = true;
-        Configuration.timeout = 20000;
+        Configuration.timeout = 10000;
         Configuration.savePageSource = false;
+        Configuration.browserSize = "1920x1080";
 
         loginPage = new LoginPage();
         calendarPage = new CalendarPage();
@@ -50,12 +54,13 @@ public class BaseTest {
         caloricNeedsCalculatorTab = new CaloricNeedsCalculatorTab();
         workoutUpdatePage = new WorkoutUpdatePage();
         workoutDetailsPage = new WorkoutDetailsPage();
+        defaultPage = new DefaultPage();
 
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
-
+        log.info("Browser close.");
         getWebDriver().quit();
     }
 
