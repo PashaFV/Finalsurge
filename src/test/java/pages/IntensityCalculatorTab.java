@@ -1,15 +1,12 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import elements.Input;
+import elements.RadioButton;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import tests.base.BaseTest;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.switchTo;
 
 public class IntensityCalculatorTab extends WorkoutCalculatorPopUp {
 
@@ -31,10 +28,10 @@ public class IntensityCalculatorTab extends WorkoutCalculatorPopUp {
     @Step("Running Intensity Calculation")
     public void calculateRunningIntensity() {
 
-        $(FIVE_KM_RADIO_BUTTON).setSelected(true);
-        $(HOURS_INPUT).setValue("00");
-        $(MINUTES_INPUT).sendKeys("30");
-        $(SECONDS_INPUT).sendKeys("00");
+        new RadioButton("#FIVEK").click();
+        new Input("#TimeHH").write("00");
+        new Input("#TimeMM").write("30");
+        new Input("#TimeSS").write("00");
         $(CALCULATE_PACES_BUTTON).click();
 
     }
@@ -42,15 +39,16 @@ public class IntensityCalculatorTab extends WorkoutCalculatorPopUp {
     @Step("Running Intensity Calculation with invalid date")
     public void calculateRunningIntensityWithInvalidData() {
 
-        $(MARATHON_RADIO_BUTTON).setSelected(true);
-        $(HOURS_INPUT).setValue("00");
-        $(MINUTES_INPUT).sendKeys("10");
-        $(SECONDS_INPUT).sendKeys("00");
+
+        new RadioButton("#MARATHON").click();
+        new Input("#TimeHH").write("00");
+        new Input("#TimeMM").write("10");
+        new Input("#TimeSS").write("00");
         $(CALCULATE_PACES_BUTTON).click();
 
     }
 
-//shouldHave(text("30:00"));
+    //ERROR
 
 
     @Step("Checking that the table was opened")
