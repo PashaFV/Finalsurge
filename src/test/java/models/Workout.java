@@ -24,4 +24,8 @@ public class Workout {
     String howIFelt;
     String perceivedEffort; //Perceived Effort
     String postWorkoutNotesResults; //Post Workout Notes/Results
+    boolean showPlannedDistance;
+    boolean saveToLibrary;
+    boolean markAsRace;
+
 }

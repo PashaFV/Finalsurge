@@ -15,9 +15,6 @@ public class WorkoutLibraryPage extends BasePage {
     String DescriptionCell = "//tr/td[2][text()='%s']/../td[3]";
     public static final By EXPAND_COLLAPSE_TABLE_RUN = By.xpath("//h4[text()='Run']");
 
-
-    ////tr/td[2][text()='International']/../td[3]
-
     @Step("Open workout library page ")
     public void openPage() {
         open("/WorkoutLibrary");

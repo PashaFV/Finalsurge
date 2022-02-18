@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import elements.Dropdown;
 import elements.Input;
@@ -9,8 +10,7 @@ import models.Workout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 @Log4j2
 public class CalendarPage extends BasePage{
@@ -23,6 +23,7 @@ public class CalendarPage extends BasePage{
     public static final By SUCCESS_QUICK_ADD_WORKOUT_TEXT = By.xpath("//div[@class='alert alert-success']");
     public static final String HEADER_MONTH_LINK = "#dpMonth";
     public static final By PREV_MONTH_BUTTON = By.xpath("//i[contains(@class,'icon-chevron-left')]");
+    public static final By CALENDAR_WORKOUT_CHIP_NAME = By.xpath("//div[@data-title]");
     String chosenWorkout = "//div[@data-title='%s']";
     String workoutContextMenuItem = "//div[@data-title='%s']/../../ul//a[text()='%s']";
 
@@ -64,9 +65,9 @@ public class CalendarPage extends BasePage{
         new Dropdown("#HowFeel").selectOption(workout.getHowIFelt());
         new Dropdown("#PerEffort").selectOption(workout.getPerceivedEffort());
 
-        $("#PlannedWorkout").setSelected(true);
-        $("#SaveLibrary").setSelected(true);
-        $("#IsRace").setSelected(true);
+        $("#PlannedWorkout").setSelected(workout.isShowPlannedDistance());
+        $("#SaveLibrary").setSelected(workout.isSaveToLibrary());
+        $("#IsRace").setSelected(workout.isMarkAsRace());
     }
 
     public void clickSaveQuickAddWorkout(){
@@ -84,7 +85,7 @@ public class CalendarPage extends BasePage{
         clickSaveQuickAddWorkout();
     }
 
-    public SelenideElement successQuickAddWorkoutText() {
+    public SelenideElement successQuickAddWorkoutToLibraryText() {
         return $(SUCCESS_QUICK_ADD_WORKOUT_TEXT);
     }
 
@@ -98,6 +99,11 @@ public class CalendarPage extends BasePage{
 
     public void goToUpdateFormOfCreatedWorkout(String workoutName) {
         $(By.xpath(String.format(chosenWorkout, workoutName))).click();
+        deleteCookiesForExpandCollapseTables();
         $(By.xpath(String.format(workoutContextMenuItem, workoutName, "Update Workout"))).click();
+    }
+
+    public SelenideElement createdWorkout(String workoutName){
+        return $(By.xpath(String.format(chosenWorkout, workoutName)));
     }
 }

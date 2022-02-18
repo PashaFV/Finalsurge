@@ -25,6 +25,26 @@ public class WorkoutItemTest extends BaseTest {
 
         workoutUpdatePage.workoutUpdateHeader().shouldBe(visible);
         Workout workoutFromUpdateForm = workoutUpdatePage.readFieldValuesFromUpdateWorkoutForm();
+        Workout workoutForEditing = WorkoutFactory.get();
+
+        workoutUpdatePage.updateWorkout(workoutForEditing);
+        workoutDetailsPage.workoutDetailsHeader().shouldBe(visible);
+    }
+
+    @Test(description = "Run type workout should be updated")
+    public void checkFieldsValuesOfCreatedWorkoutInUpdateForm(){
+        loginPage.openPage();
+        loginPage.login();
+        calendarPage.openPage();
+        calendarPage.openQuickAddWorkoutForm();
+        calendarPage.workoutAddHeader().shouldBe(visible);
+
+        Workout workout = WorkoutFactory.get();
+        calendarPage.createQuickAddWorkout(workout);
+        calendarPage.goToUpdateFormOfCreatedWorkout(workout.getWorkoutName());
+
+        workoutUpdatePage.workoutUpdateHeader().shouldBe(visible);
+        Workout workoutFromUpdateForm = workoutUpdatePage.readFieldValuesFromUpdateWorkoutForm();
 
         assertEquals(workoutFromUpdateForm.getWorkoutName(), workout.getWorkoutName());
         assertEquals(workoutFromUpdateForm.getWorkoutDescription(), workout.getWorkoutDescription());
@@ -37,8 +57,5 @@ public class WorkoutItemTest extends BaseTest {
         assertEquals(workoutFromUpdateForm.getPaceMeasure(), workout.getPaceMeasure());
         assertEquals(workoutFromUpdateForm.getHowIFelt(), workout.getHowIFelt());
         assertEquals(workoutFromUpdateForm.getPerceivedEffort(), workout.getPerceivedEffort());
-
-        workoutUpdatePage.updateWorkout();
-        workoutDetailsPage.workoutDetailsHeader().shouldBe(visible);
     }
 }
