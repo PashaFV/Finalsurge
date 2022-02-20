@@ -7,8 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -32,14 +31,14 @@ public class WorkoutItemTest extends BaseTest {
         workoutUpdatePage.updateWorkout(workoutForEditing);
 
         workoutDetailsPage.workoutDetailsHeader().shouldBe(visible);
-        assertTrue(workoutDetailsPage.activityTypeField().getText().contains(workoutForEditing.getActivityType()));
-        assertTrue(workoutDetailsPage.timeOfDayField().getText().contains(workoutForEditing.getTimeOfDay()));
+        workoutDetailsPage.activityTypeField().shouldHave(text(workoutForEditing.getActivityType()));
+        workoutDetailsPage.timeOfDayField().shouldHave(text(workoutForEditing.getTimeOfDay()));
         workoutDetailsPage.workoutNameField().shouldHave(text(workoutForEditing.getWorkoutName()));
-        assertTrue(workoutDetailsPage.workoutDescField().getText().contains(workoutForEditing.getWorkoutDescription()));
-        assertTrue(workoutDetailsPage.distanceStatisticsBlock(workoutForEditing).getText().contains(workoutForEditing.getDistance()));
-        assertTrue(workoutDetailsPage.distanceStatisticsBlock(workoutForEditing).getText().contains(workoutForEditing.getDistanceMeasure()));
-        assertTrue(workoutDetailsPage.distanceStatisticsBlock(workoutForEditing).getText().contains(workoutForEditing.getDuration()));
-        assertTrue(workoutDetailsPage.paceStatisticsBlock(workoutForEditing).getText().contains(workoutForEditing.getPaceMeasure()));
+        workoutDetailsPage.workoutDescField().shouldHave(text(workoutForEditing.getWorkoutDescription()));
+        workoutDetailsPage.distanceStatisticsBlock(workoutForEditing).shouldHave((text(workoutForEditing.getDistance())));
+        workoutDetailsPage.distanceStatisticsBlock(workoutForEditing).shouldHave((text(workoutForEditing.getDistanceMeasure())));
+        workoutDetailsPage.distanceStatisticsBlock(workoutForEditing).shouldHave((text(workoutForEditing.getDuration())));
+        workoutDetailsPage.paceStatisticsBlock(workoutForEditing).shouldHave(text(workoutForEditing.getPaceMeasure()));
         workoutDetailsPage.howIFeltField().shouldHave(text(workoutForEditing.getHowIFelt()));
         workoutDetailsPage.perceivedEffortField().shouldHave(text(workoutForEditing.getPerceivedEffort()));
     }
