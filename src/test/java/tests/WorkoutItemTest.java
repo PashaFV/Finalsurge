@@ -1,14 +1,14 @@
 package tests;
 
-import com.codeborne.selenide.Condition;
 import models.Workout;
 import models.WorkoutFactory;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.WorkoutUploadDataPopUp;
 import tests.base.BaseTest;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import java.io.File;
+
+import static com.codeborne.selenide.Condition.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -32,14 +32,14 @@ public class WorkoutItemTest extends BaseTest {
         workoutUpdatePage.updateWorkout(workoutForEditing);
 
         workoutDetailsPage.workoutDetailsHeader().shouldBe(visible);
-        assertTrue(workoutDetailsPage.activityTypeField().getText().contains(workoutForEditing.getActivityType()));
-        assertTrue(workoutDetailsPage.timeOfDayField().getText().contains(workoutForEditing.getTimeOfDay()));
+        workoutDetailsPage.activityTypeField().shouldHave(text(workoutForEditing.getActivityType()));
+        workoutDetailsPage.timeOfDayField().shouldHave(text(workoutForEditing.getTimeOfDay()));
         workoutDetailsPage.workoutNameField().shouldHave(text(workoutForEditing.getWorkoutName()));
-        assertTrue(workoutDetailsPage.workoutDescField().getText().contains(workoutForEditing.getWorkoutDescription()));
-        assertTrue(workoutDetailsPage.distanceStatisticsBlock(workoutForEditing).getText().contains(workoutForEditing.getDistance()));
-        assertTrue(workoutDetailsPage.distanceStatisticsBlock(workoutForEditing).getText().contains(workoutForEditing.getDistanceMeasure()));
-        assertTrue(workoutDetailsPage.distanceStatisticsBlock(workoutForEditing).getText().contains(workoutForEditing.getDuration()));
-        assertTrue(workoutDetailsPage.paceStatisticsBlock(workoutForEditing).getText().contains(workoutForEditing.getPaceMeasure()));
+        workoutDetailsPage.workoutDescField().shouldHave(text(workoutForEditing.getWorkoutDescription()));
+        workoutDetailsPage.distanceStatisticsBlock(workoutForEditing).shouldHave((text(workoutForEditing.getDistance())));
+        workoutDetailsPage.distanceStatisticsBlock(workoutForEditing).shouldHave((text(workoutForEditing.getDistanceMeasure())));
+        workoutDetailsPage.distanceStatisticsBlock(workoutForEditing).shouldHave((text(workoutForEditing.getDuration())));
+        workoutDetailsPage.paceStatisticsBlock(workoutForEditing).shouldHave(text(workoutForEditing.getPaceMeasure()));
         workoutDetailsPage.howIFeltField().shouldHave(text(workoutForEditing.getHowIFelt()));
         workoutDetailsPage.perceivedEffortField().shouldHave(text(workoutForEditing.getPerceivedEffort()));
     }
@@ -70,5 +70,37 @@ public class WorkoutItemTest extends BaseTest {
         assertEquals(workoutFromUpdateForm.getPaceMeasure(), workout.getPaceMeasure());
         assertEquals(workoutFromUpdateForm.getHowIFelt(), workout.getHowIFelt());
         assertEquals(workoutFromUpdateForm.getPerceivedEffort(), workout.getPerceivedEffort());
+    }
+
+
+    @Test(description = "Check if a comment is added to the workout")
+    public void workoutCommentShouldBeAdded(){
+        loginPage.openPage();
+        loginPage.login();
+        calendarPage.openPage();
+        calendarPage.openQuickAddWorkoutForm();
+        calendarPage.workoutAddHeader().shouldBe(visible);
+
+        Workout workout = WorkoutFactory.get();
+        calendarPage.createQuickAddWorkout(workout);
+        calendarPage.goToWorkoutCommentsPopUp(workout.getWorkoutName());
+        workoutCommentsPopUp.addComment(workout.getWorkoutComment());
+        workoutCommentsPopUp.createdComment().shouldHave(text(workout.getWorkoutComment()));
+    }
+
+    @Test(description = "Check if a file is uploaded to the workout item")
+    public void fileShouldBeUploaded(){
+        File file = new File("src/test/resources/example.tcx");
+        loginPage.openPage();
+        loginPage.login();
+        calendarPage.openPage();
+        calendarPage.openQuickAddWorkoutForm();
+        calendarPage.workoutAddHeader().shouldBe(visible);
+
+        Workout workout = WorkoutFactory.get();
+        calendarPage.createQuickAddWorkout(workout);
+        calendarPage.goToWorkoutUploadDataPopUp(workout.getWorkoutName());
+        workoutUploadDataPopUp.uploadFile(file);
+        workoutDetailsPage.downloadFileButton().shouldBe(visible);
     }
 }

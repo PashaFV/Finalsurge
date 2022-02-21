@@ -28,6 +28,8 @@ public class BaseTest {
     public WorkoutUpdatePage workoutUpdatePage;
     public WorkoutDetailsPage workoutDetailsPage;
     public DefaultPage defaultPage;
+    public WorkoutCommentsPopUp workoutCommentsPopUp;
+    public WorkoutUploadDataPopUp workoutUploadDataPopUp;
 
     @BeforeClass
     public void setUp() {
@@ -55,7 +57,8 @@ public class BaseTest {
         workoutUpdatePage = new WorkoutUpdatePage();
         workoutDetailsPage = new WorkoutDetailsPage();
         defaultPage = new DefaultPage();
-
+        workoutCommentsPopUp = new WorkoutCommentsPopUp();
+        workoutUploadDataPopUp = new WorkoutUploadDataPopUp();
     }
 
     @AfterClass(alwaysRun = true)

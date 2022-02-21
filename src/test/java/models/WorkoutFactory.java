@@ -35,6 +35,7 @@ public class WorkoutFactory {
                 .markAsRace(faker.bool().bool())
                 .showPlannedDistance(faker.bool().bool())
                 .saveToLibrary(faker.bool().bool())
+                .workoutComment(faker.esports().player())
                 .build();
     }
 }
