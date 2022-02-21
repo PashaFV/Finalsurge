@@ -106,4 +106,17 @@ public class CalendarPage extends BasePage{
     public SelenideElement createdWorkout(String workoutName){
         return $(By.xpath(String.format(chosenWorkout, workoutName)));
     }
+
+    public void goToWorkoutCommentsPopUp(String workoutName){
+        $(By.xpath(String.format(chosenWorkout, workoutName))).click();
+        $(By.xpath(String.format(workoutContextMenuItem, workoutName, "Comments"))).click();
+        switchTo().frame($("#WorkoutCommentsiFrame"));
+    }
+
+    public void goToWorkoutUploadDataPopUp(String workoutName) {
+        $(By.xpath(String.format(chosenWorkout, workoutName))).click();
+        $(By.xpath(String.format(workoutContextMenuItem, workoutName, "Upload Data"))).click();
+        switchTo().frame($("#WorkoutUploadiFrame"));
+    }
+
 }

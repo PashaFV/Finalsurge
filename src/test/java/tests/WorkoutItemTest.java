@@ -1,11 +1,12 @@
 package tests;
 
-import com.codeborne.selenide.Condition;
 import models.Workout;
 import models.WorkoutFactory;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.WorkoutUploadDataPopUp;
 import tests.base.BaseTest;
+
+import java.io.File;
 
 import static com.codeborne.selenide.Condition.*;
 import static org.testng.Assert.assertEquals;
@@ -69,5 +70,37 @@ public class WorkoutItemTest extends BaseTest {
         assertEquals(workoutFromUpdateForm.getPaceMeasure(), workout.getPaceMeasure());
         assertEquals(workoutFromUpdateForm.getHowIFelt(), workout.getHowIFelt());
         assertEquals(workoutFromUpdateForm.getPerceivedEffort(), workout.getPerceivedEffort());
+    }
+
+
+    @Test(description = "Check if a comment is added to the workout")
+    public void workoutCommentShouldBeAdded(){
+        loginPage.openPage();
+        loginPage.login();
+        calendarPage.openPage();
+        calendarPage.openQuickAddWorkoutForm();
+        calendarPage.workoutAddHeader().shouldBe(visible);
+
+        Workout workout = WorkoutFactory.get();
+        calendarPage.createQuickAddWorkout(workout);
+        calendarPage.goToWorkoutCommentsPopUp(workout.getWorkoutName());
+        workoutCommentsPopUp.addComment(workout.getWorkoutComment());
+        workoutCommentsPopUp.createdComment().shouldHave(text(workout.getWorkoutComment()));
+    }
+
+    @Test(description = "Check if a file is uploaded to the workout item")
+    public void fileShouldBeUploaded(){
+        File file = new File("src/test/resources/example.tcx");
+        loginPage.openPage();
+        loginPage.login();
+        calendarPage.openPage();
+        calendarPage.openQuickAddWorkoutForm();
+        calendarPage.workoutAddHeader().shouldBe(visible);
+
+        Workout workout = WorkoutFactory.get();
+        calendarPage.createQuickAddWorkout(workout);
+        calendarPage.goToWorkoutUploadDataPopUp(workout.getWorkoutName());
+        workoutUploadDataPopUp.uploadFile(file);
+        workoutDetailsPage.downloadFileButton().shouldBe(visible);
     }
 }

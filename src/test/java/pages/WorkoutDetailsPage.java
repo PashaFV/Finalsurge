@@ -17,6 +17,7 @@ public class WorkoutDetailsPage extends BasePage {
     public static final By WORKOUT_DESC_FIELD = By.xpath("//small[contains(text(), 'Workout Description:')]/../../p");
     public static final By HOW_I_FELT_FIELD = By.xpath("//small[text()='How I Felt:']/../span");
     public static final By PERCEIVED_EFFORT_FIELD = By.xpath("//small[text()='Perceived Effort']/..");
+    public static final By DOWNLOAD_FILE_BUTTON = By.xpath("//button[text() = 'Download File']");
 
    // String ACTIVITY_TYPE_FIELD = "//div[@style]/span";  //   //div/span[text()='%s']
    // String TIME_OF_DAY_FIELD = "//div[@class='formSep']/div[@style]/small"; //  //div/small[contains(text(),'%s')]
@@ -62,4 +63,7 @@ public class WorkoutDetailsPage extends BasePage {
         return $(PERCEIVED_EFFORT_FIELD);
     }
 
+    public SelenideElement downloadFileButton() {
+        return $(DOWNLOAD_FILE_BUTTON);
+    }
 }
