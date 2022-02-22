@@ -30,6 +30,7 @@ public class BaseTest {
     public DefaultPage defaultPage;
     public WorkoutCommentsPopUp workoutCommentsPopUp;
     public WorkoutUploadDataPopUp workoutUploadDataPopUp;
+    public WorkoutInjuryReportPopUp workoutInjuryReportPopUp;
 
     @BeforeClass
     public void setUp() {
@@ -40,7 +41,7 @@ public class BaseTest {
         Configuration.clickViaJs = true;
         Configuration.timeout = 10000;
         Configuration.savePageSource = false;
-        Configuration.browserSize = "1920x1080";
+        Configuration.browserSize = "1440x1080";
 
         loginPage = new LoginPage();
         calendarPage = new CalendarPage();
@@ -59,6 +60,7 @@ public class BaseTest {
         defaultPage = new DefaultPage();
         workoutCommentsPopUp = new WorkoutCommentsPopUp();
         workoutUploadDataPopUp = new WorkoutUploadDataPopUp();
+        workoutInjuryReportPopUp = new WorkoutInjuryReportPopUp();
     }
 
     @AfterClass(alwaysRun = true)

@@ -1,9 +1,11 @@
 package tests;
 
+import com.codeborne.selenide.Condition;
+import models.Injury;
+import models.InjuryFactory;
 import models.Workout;
 import models.WorkoutFactory;
 import org.testng.annotations.Test;
-import pages.WorkoutUploadDataPopUp;
 import tests.base.BaseTest;
 
 import java.io.File;
@@ -103,4 +105,25 @@ public class WorkoutItemTest extends BaseTest {
         workoutUploadDataPopUp.uploadFile(file);
         workoutDetailsPage.downloadFileButton().shouldBe(visible);
     }
+
+    @Test(description = "Check if a workout pain & injury report is added to the workout item")
+    public void workoutPainInjuryReportShouldBeAdded(){
+        loginPage.openPage();
+        loginPage.login();
+        calendarPage.openPage();
+        calendarPage.openQuickAddWorkoutForm();
+        calendarPage.workoutAddHeader().shouldBe(visible);
+
+        Workout workout = WorkoutFactory.get();
+        Injury injury = InjuryFactory.get();
+        calendarPage.createQuickAddWorkout(workout);
+        calendarPage.goToWorkoutPainInjuryReportPopUp(workout.getWorkoutName());
+        injury = workoutInjuryReportPopUp.addFrontReport(injury);
+
+        workoutInjuryReportPopUp.painMapDot(injury.getBodyDot()).shouldHave(attributeMatching("data-original-title",".+" + injury.getWithPainLevelConnectedText() + ".+"));
+        workoutInjuryReportPopUp.painMapDot(injury.getBodyDot()).shouldHave(attributeMatching("data-original-title",".+" + injury.getWithPainTrendConnectedText()  + ".+"));
+        //workoutInjuryReportPopUp.painMapDot(injury.getBodyDot()).shouldHave(attributeMatching("data-original-title",".+" + injury.()  + ".+"));
+        //workoutInjuryReportPopUp.painMapDot(injury.getBodyDot()).shouldHave(attributeMatching("data-original-title",".+" + injury.()  + ".+"));
+    }
+
 }

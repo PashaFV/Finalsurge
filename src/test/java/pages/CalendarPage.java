@@ -119,4 +119,9 @@ public class CalendarPage extends BasePage{
         switchTo().frame($("#WorkoutUploadiFrame"));
     }
 
+    public void goToWorkoutPainInjuryReportPopUp(String workoutName) {
+        $(By.xpath(String.format(chosenWorkout, workoutName))).click();
+        $(By.xpath(String.format(workoutContextMenuItem, workoutName, "Pain & Injury"))).click();
+        switchTo().frame($("#PainInjuryFrame"));
+    }
 }
