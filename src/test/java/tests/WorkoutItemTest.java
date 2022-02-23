@@ -122,8 +122,8 @@ public class WorkoutItemTest extends BaseTest {
 
         workoutInjuryReportPopUp.painMapDot(injury.getBodyDot()).shouldHave(attributeMatching("data-original-title",".+" + injury.getWithPainLevelConnectedText() + ".+"));
         workoutInjuryReportPopUp.painMapDot(injury.getBodyDot()).shouldHave(attributeMatching("data-original-title",".+" + injury.getWithPainTrendConnectedText()  + ".+"));
-        //workoutInjuryReportPopUp.painMapDot(injury.getBodyDot()).shouldHave(attributeMatching("data-original-title",".+" + injury.()  + ".+"));
-        //workoutInjuryReportPopUp.painMapDot(injury.getBodyDot()).shouldHave(attributeMatching("data-original-title",".+" + injury.()  + ".+"));
+        workoutInjuryReportPopUp.painMapDot(injury.getBodyDot()).shouldHave(attributeMatching("data-original-title",".+" + injury.getWithPainDurationStartConnectedText()  + ".+"));
+        workoutInjuryReportPopUp.painMapDot(injury.getBodyDot()).shouldHave(attributeMatching("data-original-title",".+" + injury.getWithPainDurationEndConnectedText()  + ".+"));
     }
 
 }
