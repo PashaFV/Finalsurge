@@ -31,6 +31,7 @@ public class BaseTest {
     public WorkoutCommentsPopUp workoutCommentsPopUp;
     public WorkoutUploadDataPopUp workoutUploadDataPopUp;
     public WorkoutInjuryReportPopUp workoutInjuryReportPopUp;
+    public VitalsPage vitalsPage;
 
     @BeforeClass
     public void setUp() {
@@ -61,6 +62,7 @@ public class BaseTest {
         workoutCommentsPopUp = new WorkoutCommentsPopUp();
         workoutUploadDataPopUp = new WorkoutUploadDataPopUp();
         workoutInjuryReportPopUp = new WorkoutInjuryReportPopUp();
+        vitalsPage = new VitalsPage();
     }
 
     @AfterClass(alwaysRun = true)

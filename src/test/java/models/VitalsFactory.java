@@ -24,6 +24,7 @@ public class VitalsFactory {
                 .bodyFat(String.valueOf(faker.number().numberBetween(15, 30)))
                 .water(String.valueOf(faker.number().numberBetween(55, 65)))
                 .muscleMass(String.valueOf(faker.number().numberBetween(32, 39)))
+                .muscleMassMeasure("kg")
                 .restingHR(String.valueOf(faker.number().numberBetween(60, 70)))
                 .variabilityHR(String.valueOf(faker.number().numberBetween(53, 82)))
                 .sleepHours(String.valueOf(faker.number().numberBetween(5, 10)))
