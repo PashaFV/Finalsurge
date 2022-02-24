@@ -18,4 +18,6 @@ public class Injury {
     String painNotes;
     String withPainTrendConnectedText;
     String withPainLevelConnectedText;
+    String withPainDurationStartConnectedText;
+    String withPainDurationEndConnectedText;
 }

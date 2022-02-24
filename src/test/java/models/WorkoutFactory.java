@@ -16,7 +16,6 @@ public class WorkoutFactory {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/dd/yyyy");
         DateTimeFormatter duration = DateTimeFormatter.ofPattern("m:ss");
         LocalDateTime now = LocalDateTime.now();
-        System.out.println(dtf.format(now));
         return Workout.builder()
                 .date(dtf.format(now))
                 .timeOfDay("12:00 PM")

@@ -33,6 +33,8 @@ public class WorkoutInjuryReportPopUp extends BasePage{
         new Input(PAIN_NOTES_TEXTAREA).write(injury.getPainNotes());
         injury.setWithPainLevelConnectedText($(PAIN_LEVEL_DESC_ELEMENT).getOwnText());
         injury.setWithPainTrendConnectedText($(PAIN_TREND_DESC_ELEMENT).getOwnText());
+        injury.setWithPainDurationEndConnectedText($(PAIN_DURATION_DD_MAX_COUNTER).getText());
+        injury.setWithPainDurationStartConnectedText($(PAIN_DURATION_DD_MIN_COUNTER).getText());
         $(ADD_INJURY_REPORT_BUTTON).click();
         return injury;
     }
