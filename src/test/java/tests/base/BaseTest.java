@@ -1,6 +1,8 @@
 package tests.base;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -44,6 +46,7 @@ public class BaseTest {
         Configuration.timeout = 10000;
         Configuration.savePageSource = false;
         Configuration.browserSize = "1440x1080";
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
 
         loginPage = new LoginPage();
         calendarPage = new CalendarPage();
