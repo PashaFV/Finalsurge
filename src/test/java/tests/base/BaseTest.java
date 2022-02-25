@@ -1,18 +1,23 @@
 package tests.base;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j2;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.testng.annotations.*;
 import pages.*;
 import utils.PropertyReader;
+
+
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 @Log4j2
+@Listeners(TestListener.class)
 public class BaseTest {
 
     public LoginPage loginPage;
@@ -74,6 +79,11 @@ public class BaseTest {
     public void tearDown() {
         log.info("Browser close.");
         getWebDriver().quit();
+    }
+
+    @Attachment(type = "image/png")
+    public byte[] takeScreenshot() {
+        return ((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
 }
