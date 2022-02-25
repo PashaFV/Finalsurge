@@ -15,7 +15,13 @@ import static com.codeborne.selenide.Selenide.open;
 @Log4j2
 public class VitalsPage extends BasePage{
     public static final By ADD_VITALS_BUTTON = By.xpath("//button[@title='Add Vitals']");
+    public static final By DELETE_VITALS_BUTTON = By.xpath("//a[@title = 'Delete']");
+    public static final By CONFIRM_DELETE_VITALS_BUTTON = By.xpath("//div[contains(@class, 'bootbox')]//a[contains(@class, 'btn') and text()='OK']");
+
+    String vitalsDateField = "//table//tr/td/a[text()='%s']";
     String createdDailyVitalsRow = "//table//tr/td[contains(text(), '%s')]";
+    String stepsFieldOfVitalsRow = "//table//tr/td/a[text()='%s']/../../td[2]";
+
 
     @Step("Open Daily Vitals page ")
     public void openPage() {
@@ -59,5 +65,23 @@ public class VitalsPage extends BasePage{
     public SelenideElement createdDailyVitals(String vitalsTextField){
         return $(By.xpath(String.format(createdDailyVitalsRow, vitalsTextField)));
     }
+    public SelenideElement stepsFieldOfVitalsRow(String vitalsDate){
+        return $(By.xpath(String.format(stepsFieldOfVitalsRow, vitalsDate)));
+    }
+
+    public void editVitals(String createdVitalsDate, Vitals vitalsForEditing){
+        $(By.xpath(String.format(vitalsDateField, createdVitalsDate))).click();
+        fillInDailyVitalsForm(vitalsForEditing);
+        clickSaveAddVitals();
+    }
+
+    public void deleteVitals(String createdVitalsDate){
+        $(By.xpath(String.format(vitalsDateField, createdVitalsDate))).click();
+        $(DELETE_VITALS_BUTTON).click();
+        $(CONFIRM_DELETE_VITALS_BUTTON).click();
+    }
+
+
+
 
 }

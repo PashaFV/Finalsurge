@@ -31,4 +31,45 @@ public class VitalsTest  extends BaseTest {
         vitalsPage.createdDailyVitals(vitals.getStressAmount()).shouldHave(Condition.text(vitals.getStressAmount()));
         //vitalsPage.createdDailyVitals(vitals.getHealthNotes()).shouldHave(Condition.text(vitals.getHealthNotes())); //TODO update working method for span notes через ИЛИ локатор
     }
+
+    @Test(description = "Check if vitals is updated")
+    public void updateDailyVitals() {
+        loginPage.openPage();
+        loginPage.login();
+        vitalsPage.openPage();
+        Vitals vitals = VitalsFactory.get();
+        vitalsPage.createAddVitals(vitals);
+        Vitals vitalsForEditing = VitalsFactory.get();
+        vitalsPage.editVitals(vitals.getDate(), vitalsForEditing);
+
+        vitalsPage.createdDailyVitals(vitalsForEditing.getSteps()).shouldHave(Condition.text(vitalsForEditing.getSteps()));
+        vitalsPage.createdDailyVitals(vitalsForEditing.getWeight()).shouldHave(Condition.text(vitalsForEditing.getWeight()));
+        vitalsPage.createdDailyVitals(vitalsForEditing.getBodyFat()).shouldHave(Condition.text(vitalsForEditing.getBodyFat()));
+        vitalsPage.createdDailyVitals(vitalsForEditing.getRestingHR()).shouldHave(Condition.text(vitalsForEditing.getRestingHR()));
+        vitalsPage.createdDailyVitals(vitalsForEditing.getVariabilityHR()).shouldHave(Condition.text(vitalsForEditing.getVariabilityHR()));
+        vitalsPage.createdDailyVitals(vitalsForEditing.getCalories()).shouldHave(Condition.text(vitalsForEditing.getCalories()));
+        vitalsPage.createdDailyVitals(vitalsForEditing.getWater()).shouldHave(Condition.text(vitalsForEditing.getWater()));
+        vitalsPage.createdDailyVitals(vitalsForEditing.getMuscleMass()).shouldHave(Condition.text(vitalsForEditing.getMuscleMass()));
+        vitalsPage.createdDailyVitals(vitalsForEditing.getSleepHours()).shouldHave(Condition.text(vitalsForEditing.getSleepHours()));
+        vitalsPage.createdDailyVitals(vitalsForEditing.getTotalTimeAwake()).shouldHave(Condition.text(vitalsForEditing.getTotalTimeAwake()));
+        vitalsPage.createdDailyVitals(vitalsForEditing.getSleepAmount()).shouldHave(Condition.text(vitalsForEditing.getSleepAmount()));
+        vitalsPage.createdDailyVitals(vitalsForEditing.getSleepQuality()).shouldHave(Condition.text(vitalsForEditing.getSleepQuality()));
+        vitalsPage.createdDailyVitals(vitalsForEditing.getStressAmount()).shouldHave(Condition.text(vitalsForEditing.getStressAmount()));
+    }
+
+    @Test(description = "Check if vitals is deleted")
+    public void deleteDailyVitals(){
+        loginPage.openPage();
+        loginPage.login();
+        vitalsPage.openPage();
+        Vitals vitals = VitalsFactory.get();
+        vitalsPage.createAddVitals(vitals);
+        vitalsPage.deleteVitals(vitals.getDate());
+
+        vitalsPage.stepsFieldOfVitalsRow(vitals.getDate()).shouldNotHave(Condition.text(vitals.getSteps()));
+    }
+
+
+
+
 }
