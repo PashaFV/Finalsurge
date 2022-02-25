@@ -9,11 +9,11 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.*;
+import org.testng.reporters.TextReporter;
 import pages.*;
 import utils.PropertyReader;
 
-
-
+import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 @Log4j2
@@ -41,7 +41,7 @@ public class BaseTest {
     public WorkoutReportPage workoutReportPage;
     public VitalsPage vitalsPage;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
         log.info("Setup options and configurations.");
 
@@ -75,15 +75,11 @@ public class BaseTest {
         vitalsPage = new VitalsPage();
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
         log.info("Browser close.");
-        getWebDriver().quit();
+        closeWebDriver();
     }
 
-    @Attachment(type = "image/png")
-    public byte[] takeScreenshot() {
-        return ((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
-    }
 
 }

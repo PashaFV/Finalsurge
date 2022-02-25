@@ -9,5 +9,12 @@
         </classes>
     </test> <!-- Test -->
 
+    <test name="test 2">
+        <classes>
+            <class name="tests.IntensityCalculateTest"/>
+            <class name="tests.OtherCalculatorTest"/>
+        </classes>
+    </test>
+
 </suite>
 
