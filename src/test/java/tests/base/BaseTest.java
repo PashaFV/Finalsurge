@@ -40,6 +40,7 @@ public class BaseTest {
     public WorkoutInjuryReportPopUp workoutInjuryReportPopUp;
     public WorkoutReportPage workoutReportPage;
     public VitalsPage vitalsPage;
+    public SignUpPage signUpPage;
 
     @BeforeMethod
     public void setUp() {
@@ -73,6 +74,7 @@ public class BaseTest {
         workoutInjuryReportPopUp = new WorkoutInjuryReportPopUp();
         workoutReportPage = new WorkoutReportPage();
         vitalsPage = new VitalsPage();
+        signUpPage = new SignUpPage();
     }
 
     @AfterMethod(alwaysRun = true)

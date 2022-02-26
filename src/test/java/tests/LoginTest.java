@@ -1,6 +1,8 @@
 package tests;
 
 import lombok.extern.log4j.Log4j2;
+import models.Account;
+import models.AccountFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
@@ -48,5 +50,12 @@ public class LoginTest extends BaseTest {
         };
     }
 
-
+    @Test(description = "Sign Up with valid data to finalsurge.com")
+    public void registrationTest() {
+        log.debug("Sign up to the site using valid data");
+        signUpPage.openPage();
+        Account account = AccountFactory.get();
+        signUpPage.signUp(account);
+        calendarPage.userInfo().shouldBe(visible);
+    }
 }
