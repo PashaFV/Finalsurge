@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="2" name="Test suite" parallel="tests">
+<suite thread-count="2" name="Finalsurge test suite" parallel="tests">
 
-    <test name="test 1">
+    <test name="Login test">
         <classes>
             <class name="tests.LoginTest"/>
 
         </classes>
     </test> <!-- Test -->
 
-    <test name="test 2">
+    <test name="Calculator test">
         <classes>
             <class name="tests.IntensityCalculateTest"/>
             <class name="tests.OtherCalculatorTest"/>
+            <class name="tests.WorkoutCalculatorTest"/>
+            <class name="tests.CaloricCalculateTest"/>
         </classes>
-    </test>
+    </test> <!-- Test -->
+
+    <test name="Workout report test">
+        <classes>
+            <class name="tests.WorkoutReportTest"/>
+
+        </classes>
+    </test> <!-- Test -->
 
 </suite>
 

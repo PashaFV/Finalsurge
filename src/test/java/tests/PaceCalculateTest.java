@@ -15,8 +15,10 @@ public class PaceCalculateTest extends BaseTest {
         loginPage.login();
         otherCalculatorPopUp.openCalculatorPopUp();
         otherCalculatorPopUp.popUpTitleButton().shouldBe(visible);
+        paceCalculatorTab.openPaceTab();
         paceCalculatorTab.calculatePace();
         paceCalculatorTab.checkingOpenPaceChartTable().shouldBe(visible);
+        paceCalculatorTab.checkingPaceChartTime().shouldHave(text("15:00 min/km"));
 
     }
 
@@ -27,6 +29,7 @@ public class PaceCalculateTest extends BaseTest {
         loginPage.login();
         otherCalculatorPopUp.openCalculatorPopUp();
         otherCalculatorPopUp.popUpTitleButton().shouldBe(visible);
+        paceCalculatorTab.openPaceTab();
         paceCalculatorTab.invalidCalculatePace();
         otherCalculatorPopUp.ErrorMessage().shouldHave(text("Please enter a time greater than 0 seconds."));
 

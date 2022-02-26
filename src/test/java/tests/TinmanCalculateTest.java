@@ -3,6 +3,7 @@ package tests;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 
 public class TinmanCalculateTest extends BaseTest {
@@ -14,7 +15,10 @@ public class TinmanCalculateTest extends BaseTest {
         loginPage.login();
         workoutCalculatorPopUp.openCalculatorPopUp();
         workoutCalculatorPopUp.popUpTitleButton().shouldBe(visible);
+        tinmanCalculatorTab.openTinmanTab();
         tinmanCalculatorTab.calculateTinmanRunning();
+        tinmanCalculatorTab.checkingOpenRaceInformationHeader().shouldBe(visible);
+        tinmanCalculatorTab.ratingValueInTable().shouldHave(text("57.1%"));
 
     }
 
@@ -25,8 +29,10 @@ public class TinmanCalculateTest extends BaseTest {
         loginPage.login();
         workoutCalculatorPopUp.openCalculatorPopUp();
         workoutCalculatorPopUp.popUpTitleButton().shouldBe(visible);
-        tinmanCalculatorTab.calculateTinmanRunning();
-        //add checking
+        tinmanCalculatorTab.openTinmanTab();
+        tinmanCalculatorTab.invalidCalculateTinmanRunning();
+        tinmanCalculatorTab.checkingOpenRaceInformationHeader().shouldBe(visible);
+        //Not a bug but a feature
     }
 
 }

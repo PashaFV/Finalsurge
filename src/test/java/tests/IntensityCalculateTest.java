@@ -17,6 +17,7 @@ public class IntensityCalculateTest extends BaseTest {
         workoutCalculatorPopUp.popUpTitleButton().shouldBe(visible);
         intensityCalculatorTab.calculateRunningIntensity();
         intensityCalculatorTab.checkingOpenWorkoutPacesHeader().shouldBe(visible);
+        intensityCalculatorTab.marathonPacesInTable().shouldHave(text("10:47 /mi"));
 
     }
 

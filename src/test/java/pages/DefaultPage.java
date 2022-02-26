@@ -20,6 +20,7 @@ public class DefaultPage extends BasePage {
     public static final By FIRST_DATA_IN_RECENT_PAST_WORKOUTS = By.xpath("//div[@data-label='past-workouts']/div/table/tbody/tr/td[@class='dont-break-out']/a/span[@class='list-text']");
     public static final By FIRST_DATA_IN_UPCOMING_WORKOUTS = By.xpath("//div[@data-label='future-workouts']/div/table/tbody/tr/td[@class='dont-break-out']/a/span[@class='list-text']");
     public static final By WORKOUT_REPORTS_BUTTON = By.xpath("//li[text()='Workout Reports']");
+    public static final By VIEW_CALENDAR_BUTTON = By.xpath("//button[text()='View Calendar']");
 
 
     @Step("Open page ")
@@ -36,6 +37,7 @@ public class DefaultPage extends BasePage {
         $(FIRST_DATA_IN_UPCOMING_WORKOUTS).click();
 
     }
+
     @Step("Go to workout from past workout menu")
     public void openWorkoutFromPastMenu() {
         log.info("Go to workout from past workout menu");
@@ -48,6 +50,13 @@ public class DefaultPage extends BasePage {
     public void openWorkoutReportsFromDashboard() {
         log.info("Go to workout reports from default page");
         $(WORKOUT_REPORTS_BUTTON).click();
+
+    }
+
+    @Step("Go to calendar page from default page")
+    public void openCalendarFromDashboard() {
+        log.info("Go to calendar page from default page");
+        $(VIEW_CALENDAR_BUTTON).click();
 
     }
 

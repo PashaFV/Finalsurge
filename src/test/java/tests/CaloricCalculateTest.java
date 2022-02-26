@@ -17,6 +17,7 @@ public class CaloricCalculateTest extends BaseTest {
         otherCalculatorPopUp.popUpTitleButton().shouldBe(visible);
         caloricNeedsCalculatorTab.calculateCalorics();
         caloricNeedsCalculatorTab.checkingOpenCaloricNeedsTable().shouldBe(visible);
+        caloricNeedsCalculatorTab.metabolicRate().shouldHave(text("1,752 kCal"));
 
     }
 
