@@ -57,6 +57,22 @@ public class CalendarTest extends BaseTest {
         calendarPage.openPage();
         String originalHeaderDateName = calendarPage.chosenMonth().getText();
         calendarPage.goToPrevMonth();
+
         calendarPage.chosenMonth().shouldNotHave(text(originalHeaderDateName));
     }
+
+    @Test(description = "Login with valid data to finalsurge.com")
+    public void workoutShouldBeMovedToAnotherDate() {
+        loginPage.openPage();
+        loginPage.login();
+        calendarPage.openPage();
+        calendarPage.openQuickAddWorkoutForm();
+        Workout workout = WorkoutFactory.get();
+        calendarPage.createQuickAddWorkout(workout);
+        String movingDate = calendarPage.moveWorkoutElementToTheOtherDate(workout.getWorkoutName());
+
+        calendarPage.workoutDate(workout.getWorkoutName()).shouldHave(attribute("data-day", movingDate));
+    }
+
+
 }

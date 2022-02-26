@@ -51,6 +51,4 @@ public class LoginPage extends BasePage {
     public SelenideElement successLogoutText() {
         return $(SUCCESS_LOGOUT_TEXT);
     }
-
-
 }

@@ -24,8 +24,10 @@ public class CalendarPage extends BasePage{
     public static final String HEADER_MONTH_LINK = "#dpMonth";
     public static final By PREV_MONTH_BUTTON = By.xpath("//i[contains(@class,'icon-chevron-left')]");
     public static final By CALENDAR_WORKOUT_CHIP_NAME = By.xpath("//div[@data-title]");
+    public static final By WORKOUT_MOVE_DATEPICKER_LAST_ELEMENT = By.xpath("//div[contains(@class, 'datepicker dropdown-menu') and contains(@style, 'block')]//td[contains(@class, 'day  active')]/../../tr[6]//td[7]");
     String chosenWorkout = "//div[@data-title='%s']";
     String workoutContextMenuItem = "//div[@data-title='%s']/../../ul//a[text()='%s']";
+    String workoutDate = "//div[@data-title='%s']/../../../..";
 
     @Step("Open calendar page ")
     public void openPage() {
@@ -123,5 +125,17 @@ public class CalendarPage extends BasePage{
         $(By.xpath(String.format(chosenWorkout, workoutName))).click();
         $(By.xpath(String.format(workoutContextMenuItem, workoutName, "Pain & Injury"))).click();
         switchTo().frame($("#PainInjuryFrame"));
+    }
+
+    public String moveWorkoutElementToTheOtherDate(String workoutName){
+        $(By.xpath(String.format(chosenWorkout, workoutName))).click();
+        $(By.xpath(String.format(workoutContextMenuItem, workoutName, "Move"))).click();
+        String movingDate = $(WORKOUT_MOVE_DATEPICKER_LAST_ELEMENT).getText();
+        $(WORKOUT_MOVE_DATEPICKER_LAST_ELEMENT).click();
+        return movingDate;
+    }
+
+    public SelenideElement workoutDate(String workoutName){
+        return $(By.xpath(String.format(workoutDate, workoutName)));
     }
 }
