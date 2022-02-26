@@ -15,8 +15,10 @@ public class HansonsCalculateTest extends BaseTest {
         loginPage.login();
         workoutCalculatorPopUp.openCalculatorPopUp();
         workoutCalculatorPopUp.popUpTitleButton().shouldBe(visible);
+        hansonsCalculatorTab.openHansonsTab();
         hansonsCalculatorTab.calculateHansonsMarathonPace();
         hansonsCalculatorTab.checkingOpenRaceInfoHeader().shouldBe(visible);
+        hansonsCalculatorTab.checkingPaceKmValue().shouldHave(text("0:42"));
 
     }
 
@@ -27,6 +29,7 @@ public class HansonsCalculateTest extends BaseTest {
         loginPage.login();
         workoutCalculatorPopUp.openCalculatorPopUp();
         workoutCalculatorPopUp.popUpTitleButton().shouldBe(visible);
+        hansonsCalculatorTab.openHansonsTab();
         hansonsCalculatorTab.calculateHansonsMarathonPaceWithInvalidData();
         workoutCalculatorPopUp.getErrorMessage().shouldHave(text("Please fix the following errors:"));
 

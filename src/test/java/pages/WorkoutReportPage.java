@@ -13,15 +13,11 @@ import static com.codeborne.selenide.Selenide.*;
 @Log4j2
 public class WorkoutReportPage extends BasePage{
 
-    public static final By ACTIVITY_TYPE_DROPDOWN = By.xpath("//select[@id='ActivityType']");
-    public static final By REPORT_VIEW_RADIO_BUTTONS = By.xpath("//label[@class='radio inline']");
-    //select radio $(By.name("user.gender")).selectRadio("male");
-    public static final By START_DATE_INPUT = By.xpath("//input[@id='WorkoutDate']");
-    public static final By END_DATE_INPUT = By.xpath("//input[@id='WorkoutDateEnd']");
-    public static final By VIEW_REPORT_BUTTON = By.xpath("//input[@id='saveButton']");
+
     public static final By TABLE_REPORT_TITLE = By.xpath("//div[@class='w-box w-box-blue']/div[@class='w-box-header']/h4");
     public static final By REPORT_FILTERS_TITLE = By.xpath("//div[@class='w-box-header']/h4[text()='Report Filters']");
     public static final By ADD_COMMENTS_BUTTON = By.xpath("//i[@class='icsw16-create-write ptip_s'][1]");
+    public static final By TEXT_VALUE_IN_COMMENTS = By.xpath("//div[@class='ch-content']");
 
     public static final By WORKOUT_COMMENTS_TEXTAREA = By.xpath("//textarea[@id='CommentDesc']");
     public static final By ADD_COMMENT_BUTTON = By.xpath("//input[@id='saveButtonComment']");
@@ -43,6 +39,7 @@ public class WorkoutReportPage extends BasePage{
         new RadioButton("#groupBy1").click();
 
     }
+
     @Step("Add comments to workout from report")
     public void addCommentsToWorkout() {
         log.info("Add comments to workout from report");
@@ -63,6 +60,9 @@ public class WorkoutReportPage extends BasePage{
     }
 
     public SelenideElement reportTableTitle() {return $(TABLE_REPORT_TITLE);}
+
+    public SelenideElement textValueInComments() {return $(TEXT_VALUE_IN_COMMENTS);}
+
 }
 
 

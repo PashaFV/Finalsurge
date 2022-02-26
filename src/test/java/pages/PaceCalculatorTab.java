@@ -1,45 +1,51 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import elements.Dropdown;
+import elements.Input;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
+@Log4j2
 public class PaceCalculatorTab extends OtherCalculatorPopUp{
 
-    public static final By DISTANCE_INPUT = By.xpath("//input[@id='RunDist']");
-    public static final By DISTANCE_TYPE_DROPDOWN = By.xpath("//select[@id='DistType']");
-    public static final By HOURS_INPUT = By.xpath("//input[@id='TimeHH']");
-    public static final By MINUTES_INPUT = By.xpath("//input[@id='TimeMM']");
-    public static final By SECONDS_INPUT = By.xpath("//input[@id='TimeSS']");
     public static final By CALCULATE_PACES_BUTTON = By.xpath("//input[@value='Calculate Paces']");
     public static final By PACE_CHART_TABLE_HEADER = By.xpath("//h4[text()='Pace Chart']");
+    public static final By PACE_CHART_TIME_VALUE = By.xpath("//table[@class='table table-condensed table-hover']/tbody/tr[2]/td[2]");
     public static final By PACE_TITLE_BUTTON = By.xpath("//a[text()='Pace Calculator']");
 
-
-    @Step("Pace Calculation")
-    public void calculatePace() {
-
+    @Step("Open pace calculator tab")
+    public void openPaceTab() {
+        log.info("Open pace calculator tab in other calculator");
         $(PACE_TITLE_BUTTON).click();
-        $(DISTANCE_INPUT).setValue("2");
-        $(DISTANCE_TYPE_DROPDOWN).selectOptionByValue("km");
-        $(HOURS_INPUT).setValue("00");
-        $(MINUTES_INPUT).sendKeys("30");
-        $(SECONDS_INPUT).sendKeys("00");
+    }
+
+
+    @Step("Pace calculation")
+    public void calculatePace() {
+        log.info("Pace calculation in other calculator");
+
+        new Input("#RunDist").write("2");
+        new Dropdown("#DistType").selectOption("Kilometers");
+        new Input("#TimeHH").write("00");
+        new Input("#TimeMM").write("30");
+        new Input("#TimeSS").write("00");
         $(CALCULATE_PACES_BUTTON).click();
 
     }
 
-    @Step("Pace Calculation with invalid data")
+    @Step("Pace calculation with invalid data")
     public void invalidCalculatePace() {
+        log.info("Pace calculation with invalid data in other calculator");
 
-        $(PACE_TITLE_BUTTON).click();
-        $(DISTANCE_INPUT).setValue("2");
-        $(DISTANCE_TYPE_DROPDOWN).selectOptionByValue("km");
-        $(HOURS_INPUT).setValue("00");
-        $(MINUTES_INPUT).sendKeys("00");
-        $(SECONDS_INPUT).sendKeys("00");
+        new Input("#RunDist").write("2");
+        new Dropdown("#DistType").selectOption("Kilometers");
+        new Input("#TimeHH").write("00");
+        new Input("#TimeMM").write("00");
+        new Input("#TimeSS").write("00");
         $(CALCULATE_PACES_BUTTON).click();
 
     }
@@ -48,5 +54,11 @@ public class PaceCalculatorTab extends OtherCalculatorPopUp{
     public SelenideElement checkingOpenPaceChartTable() {
         return $(PACE_CHART_TABLE_HEADER);
     }
+
+    @Step("Checking that the table was opened")
+    public SelenideElement checkingPaceChartTime() {
+        return $(PACE_CHART_TIME_VALUE);
+    }
+
 
 }

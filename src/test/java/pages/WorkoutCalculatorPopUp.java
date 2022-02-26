@@ -2,12 +2,14 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
 
+@Log4j2
 public class WorkoutCalculatorPopUp extends BasePage {
 
     public static final By WORKOUT_CALCULATOR_BUTTON = By.xpath("//a[@data-reveal-id='IntensityCalc']");
@@ -18,12 +20,14 @@ public class WorkoutCalculatorPopUp extends BasePage {
 
     @Step("Open Pop-Up workout calculator")
     public void openCalculatorPopUp(){
+        log.info("Open Pop-Up workout calculator");
         $(WORKOUT_CALCULATOR_BUTTON).click();
         switchTo().frame($("[id='IntensityCalciFrame']"));
     }
 
     @Step("Close Pop-Up workout calculator")
     public void closeCalculatorPopUp(){
+        log.info("Close Pop-Up workout calculator");
         switchTo().defaultContent();
         $(CLOSE_CALCULATOR_BUTTON).click();
 
