@@ -18,9 +18,11 @@ public class WorkoutReportPage extends BasePage{
     public static final By REPORT_FILTERS_TITLE = By.xpath("//div[@class='w-box-header']/h4[text()='Report Filters']");
     public static final By ADD_COMMENTS_BUTTON = By.xpath("//i[@class='icsw16-create-write ptip_s'][1]");
     public static final By TEXT_VALUE_IN_COMMENTS = By.xpath("//div[@class='ch-content']");
+    public static final By VIEW_REPORT_BUTTON = By.xpath("//input[@id='saveButton']");
 
     public static final By WORKOUT_COMMENTS_TEXTAREA = By.xpath("//textarea[@id='CommentDesc']");
     public static final By ADD_COMMENT_BUTTON = By.xpath("//input[@id='saveButtonComment']");
+    public static final By EMPTY_REPORT_TITLE = By.xpath("//div[@class='w-box-content']/p");
 
 
     @Step("Open page ")
@@ -37,6 +39,18 @@ public class WorkoutReportPage extends BasePage{
         new Input("#WorkoutDateEnd").write("2/24/2022");
         new Dropdown("#ActivityType").selectOption("Hills");
         new RadioButton("#groupBy1").click();
+        $(VIEW_REPORT_BUTTON).click();
+
+    }
+
+    @Step("View empty report with activity type - Hills")
+    public void viewEmptyReport() {
+        log.info("View report with activity type - Hills");
+        new Input("#WorkoutDate").write("1/01/2022");
+        new Input("#WorkoutDateEnd").write("1/07/2022");
+        new Dropdown("#ActivityType").selectOption("Hills");
+        new RadioButton("#groupBy1").click();
+        $(VIEW_REPORT_BUTTON).click();
 
     }
 
@@ -47,6 +61,7 @@ public class WorkoutReportPage extends BasePage{
         new Input("#WorkoutDateEnd").write("2/24/2022");
         new Dropdown("#ActivityType").selectOption("Hills");
         new RadioButton("#groupBy1").click();
+        $(VIEW_REPORT_BUTTON).click();
         $(ADD_COMMENTS_BUTTON).click();
         switchTo().frame($("[id='WorkoutCommentsiFrame']"));
         $(WORKOUT_COMMENTS_TEXTAREA).setValue("test comment");
@@ -60,6 +75,8 @@ public class WorkoutReportPage extends BasePage{
     }
 
     public SelenideElement reportTableTitle() {return $(TABLE_REPORT_TITLE);}
+
+    public SelenideElement emptyReportTitle() {return $(EMPTY_REPORT_TITLE);}
 
     public SelenideElement textValueInComments() {return $(TEXT_VALUE_IN_COMMENTS);}
 

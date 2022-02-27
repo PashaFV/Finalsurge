@@ -20,6 +20,18 @@ public class WorkoutReportTest extends BaseTest {
 
     }
 
+    @Test(description = "View empty report")
+    public void viewEmptyReportTest() {
+
+        loginPage.openPage();
+        loginPage.login();
+        workoutReportPage.openPage();
+        workoutReportPage.reportFiltersTitle().shouldBe(visible);
+        workoutReportPage.viewEmptyReport();
+        workoutReportPage.emptyReportTitle().shouldHave(text("There are no workout results for the selected filters."));
+
+    }
+
     @Test(description = "Add comment to workout from report")
     public void addCommentToWorkoutTest() {
 
