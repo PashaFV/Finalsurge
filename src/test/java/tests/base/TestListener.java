@@ -21,7 +21,7 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
 
         System.out.printf("Test failed: %s \n", result.getName());
-        log.info("take screenshot");
+        log.info("Take screenshot");
 
     }
 
