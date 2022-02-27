@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Condition.*;
 
 public class McMillanCalculateTest extends BaseTest {
 
-    @Test(description = "Calculation McMillan method pace")
+    @Test(description = "Calculation McMillan method pace", priority = 1)
     public void сalculateMcMillanMethodTest() {
 
         loginPage.openPage();
@@ -21,7 +21,7 @@ public class McMillanCalculateTest extends BaseTest {
 
     }
 
-    @Test(description = "Calculation McMillan method pace with invalid data")
+    @Test(description = "Calculation McMillan method pace with invalid data", priority = 2)
     public void invalidCalculateMcMillanMethodTest() {
 
         loginPage.openPage();
@@ -34,7 +34,7 @@ public class McMillanCalculateTest extends BaseTest {
 
     }
 
-    @Test(description = " Re calculation McMillan method pace after success")
+    @Test(description = " Re calculation McMillan method pace after success", priority = 3)
     public void reCalculateMcMillanMethodTest() {
 
         loginPage.openPage();

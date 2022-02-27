@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class WorkoutReportTest extends BaseTest {
 
-    @Test(description = "View report")
+    @Test(description = "View report", priority = 1)
     public void viewReportTest() {
 
         loginPage.openPage();
@@ -20,7 +20,7 @@ public class WorkoutReportTest extends BaseTest {
 
     }
 
-    @Test(description = "View empty report")
+    @Test(description = "View empty report", priority = 2)
     public void viewEmptyReportTest() {
 
         loginPage.openPage();
@@ -32,7 +32,7 @@ public class WorkoutReportTest extends BaseTest {
 
     }
 
-    @Test(description = "Add comment to workout from report")
+    @Test(description = "Add comment to workout from report", priority = 3)
     public void addCommentToWorkoutTest() {
 
         loginPage.openPage();

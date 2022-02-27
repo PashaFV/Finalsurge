@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class TinmanCalculateTest extends BaseTest {
 
-    @Test(description = "Calculation Tinman method pace")
+    @Test(description = "Calculation Tinman method pace", priority = 1)
     public void сalculateTinmanMethodTest() {
 
         loginPage.openPage();
@@ -22,7 +22,7 @@ public class TinmanCalculateTest extends BaseTest {
 
     }
 
-    @Test(description = "Calculation Tinman method pace with invalid data")
+    @Test(description = "Calculation Tinman method pace with invalid data", priority = 2)
     public void invalidCalculateTinmanMethodTest() {
 
         loginPage.openPage();
@@ -32,6 +32,7 @@ public class TinmanCalculateTest extends BaseTest {
         tinmanCalculatorTab.openTinmanTab();
         tinmanCalculatorTab.invalidCalculateTinmanRunning();
         tinmanCalculatorTab.checkingOpenRaceInformationHeader().shouldBe(visible);
+        workoutCalculatorPopUp.getErrorMessage().shouldHave(text("Please select a Race Distance."));
         //Not a bug but a feature
     }
 

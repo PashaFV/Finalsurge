@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class PaceCalculateTest extends BaseTest {
 
-    @Test(description = "Calculation pace")
+    @Test(description = "Calculation pace", priority = 1)
     public void сalculatePaceTest() {
 
         loginPage.openPage();
@@ -22,7 +22,7 @@ public class PaceCalculateTest extends BaseTest {
 
     }
 
-    @Test(description = "Calculation pace with invalid data")
+    @Test(description = "Calculation pace with invalid data", priority = 2)
     public void invalidCalculatePaceTest() {
 
         loginPage.openPage();

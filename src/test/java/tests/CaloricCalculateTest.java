@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class CaloricCalculateTest extends BaseTest {
 
-    @Test(description = "Calculation caloric")
+    @Test(description = "Calculation caloric", priority = 1)
     public void сalculateCaloricTest() {
 
         loginPage.openPage();
@@ -21,7 +21,7 @@ public class CaloricCalculateTest extends BaseTest {
 
     }
 
-    @Test(description = "Calculation caloric with invalid data")
+    @Test(description = "Calculation caloric with invalid data", priority = 2)
     public void invalidCalculateCaloricTest() {
 
         loginPage.openPage();

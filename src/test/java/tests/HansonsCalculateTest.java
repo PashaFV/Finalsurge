@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class HansonsCalculateTest extends BaseTest {
 
-    @Test(description = "Calculation Hansons method pace")
+    @Test(description = "Calculation Hansons method pace", priority = 1)
     public void сalculateHansonsMethodTest() {
 
         loginPage.openPage();
@@ -22,7 +22,7 @@ public class HansonsCalculateTest extends BaseTest {
 
     }
 
-    @Test(description = "Calculation Hansons method pace")
+    @Test(description = "Calculation Hansons method pace", priority = 2)
     public void invalidCalculateHansonsMethodTest() {
 
         loginPage.openPage();
