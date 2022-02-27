@@ -6,7 +6,6 @@ import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j2;
 
 import org.testng.annotations.*;
-import org.testng.reporters.TextReporter;
 import pages.*;
 import utils.PropertyReader;
 

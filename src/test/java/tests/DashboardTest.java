@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Condition.visible;
 @Log4j2
 public class DashboardTest extends BaseTest {
 
-    @Test(description = "Go to workout from upcoming workout menu")
+    @Test(description = "Go to workout from upcoming workout menu", priority = 1)
     public void goToWorkoutFromUpcomingMenuTest() {
 
         loginPage.openPage();
@@ -21,7 +21,7 @@ public class DashboardTest extends BaseTest {
 
     }
 
-    @Test(description = "Go to workout from upcoming workout menu")
+    @Test(description = "Go to workout from upcoming workout menu", priority = 2)
     public void goToWorkoutFromPastMenuTest() {
 
         loginPage.openPage();
@@ -33,7 +33,7 @@ public class DashboardTest extends BaseTest {
 
     }
 
-    @Test(description = "Go to workout reports from dashboard")
+    @Test(description = "Go to workout reports from dashboard", priority = 3)
     public void goToWorkoutReportsFromDashboard() {
 
         loginPage.openPage();
@@ -45,7 +45,7 @@ public class DashboardTest extends BaseTest {
 
     }
 
-    @Test(description = "Go to calendar from dashboard")
+    @Test(description = "Go to calendar from dashboard", priority = 4)
     public void goToCalendarFromDashboard() {
 
         loginPage.openPage();
