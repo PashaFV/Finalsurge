@@ -19,18 +19,13 @@ public class WorkoutDetailsPage extends BasePage {
     public static final By PERCEIVED_EFFORT_FIELD = By.xpath("//small[text()='Perceived Effort']/..");
     public static final By DOWNLOAD_FILE_BUTTON = By.xpath("//button[text() = 'Download File']");
 
-   // String ACTIVITY_TYPE_FIELD = "//div[@style]/span";  //   //div/span[text()='%s']
-   // String TIME_OF_DAY_FIELD = "//div[@class='formSep']/div[@style]/small"; //  //div/small[contains(text(),'%s')]
-   // String WORKOUT_NAME_FIELD = "//div[@class='formSep']/div[contains(@style,'clear')]"; //  //div[text()='%s']
-   // String WORKOUT_DESC_FIELD = "//small[contains(text(), 'Workout Description:')]/../../p"; // //p[contains(text(),'%s')] //small[contains(text(), 'Workout Description:')]/../../p
     String distanceStatisticsBlock = "//div/span[contains(text(),'%s %s ~ %s')]";
     String paceStatisticsBlock = "//div/span[contains(text(),'%s')]";
-   // String HOW_I_FELT_FIELD = "//small[text()='How I Felt:']/../span"; // //div/span[contains(text(),'%s')]
-   // String PERCEIVED_EFFORT_FIELD = "//small[text()='Perceived Effort']/.."; //  //div[contains(text(),'%s')]
 
     public SelenideElement workoutDetailsHeader(){
         return $(WORKOUT_DETAILS_HEADER);
     }
+
     public SelenideElement activityTypeField(){
         return $(ACTIVITY_TYPE_FIELD);
     }

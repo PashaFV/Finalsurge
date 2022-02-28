@@ -24,11 +24,15 @@ public class VitalsPage extends BasePage{
 
 
     @Step("Open Daily Vitals page ")
-    public void openPage() {
+    public void openPage()
+    {
+        log.info("Open /DailyVitals page");
         open("/DailyVitals");
     }
 
+    @Step("Create Vitals")
     public void createAddVitals(Vitals vitals){
+        log.info("Click on add vitals button");
         $(ADD_VITALS_BUTTON).click();
         fillInDailyVitalsForm(vitals);
         clickSaveAddVitals();
@@ -41,6 +45,7 @@ public class VitalsPage extends BasePage{
     }
 
     public void fillInDailyVitalsForm(Vitals vitals){
+        log.info("Fill In Daily Vitals Form");
         new Input("#VitalsDate").write(vitals.getDate());
         new Input("#Steps").write(vitals.getSteps());
         new Input("#Calories").write(vitals.getCalories());
@@ -69,15 +74,20 @@ public class VitalsPage extends BasePage{
         return $(By.xpath(String.format(stepsFieldOfVitalsRow, vitalsDate)));
     }
 
+    @Step("Edit Vitals")
     public void editVitals(String createdVitalsDate, Vitals vitalsForEditing){
+        log.info("Click on created vitals");
         $(By.xpath(String.format(vitalsDateField, createdVitalsDate))).click();
         fillInDailyVitalsForm(vitalsForEditing);
         clickSaveAddVitals();
     }
-
+    @Step("Delete Vitals")
     public void deleteVitals(String createdVitalsDate){
+        log.info("Click on created vitals");
         $(By.xpath(String.format(vitalsDateField, createdVitalsDate))).click();
+        log.info("Click on delete vitals button");
         $(DELETE_VITALS_BUTTON).click();
+        log.info("Click on confirm delete vitals button");
         $(CONFIRM_DELETE_VITALS_BUTTON).click();
     }
 

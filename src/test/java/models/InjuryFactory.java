@@ -7,8 +7,6 @@ public class InjuryFactory {
     static Faker faker = new Faker();
 
     public static Injury get(){
-        int durationEnd = faker.number().numberBetween(100, 330);
-        int durationStart = durationEnd - 50;
         return Injury.builder()
                 .bodyDot(String.valueOf(faker.number().numberBetween(1, 29)))
                 .painLevelXCoordinates(faker.number().numberBetween(1, 330))

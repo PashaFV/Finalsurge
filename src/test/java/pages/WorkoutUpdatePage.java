@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import elements.Dropdown;
 import elements.Input;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import models.Workout;
 import org.openqa.selenium.By;
@@ -25,19 +26,21 @@ public class WorkoutUpdatePage extends BasePage{
     public static final By EXPAND_COLLAPSE_TABLE_PACE_ZONES = By.xpath("//h4[text()='Pace Zones']");
     String activitySubType = "//a[contains(@class, 'acc-in')]/../..//a[contains(text(), '%s')]";
     String howIFeltRadio = "//div[@class='ibutton-group']//span[text()='%s']";
-////a[contains(@class, 'acc-in')]/../..//a[contains(text(), 'No Sub-Type')]
 
     public SelenideElement workoutUpdateHeader(){
         return $(WORKOUT_UPDATE_HEADER);
     }
 
+    @Step("Update workout")
     public void updateWorkout(Workout workout) {
         fillInUpdateWorkoutForm(workout);
         clickUpdateWorkoutButton();
     }
 
+    @Step("Fill in update workout form")
     private void fillInUpdateWorkoutForm(Workout workout) {
         expandAllTables();
+        log.info("Fill in update workout form");
         new Input("#WorkoutDate").write(workout.getDate());
         new Input("#WorkoutTime").write(workout.getTimeOfDay());
         new Input("#Name").write(workout.getWorkoutName());
@@ -45,8 +48,6 @@ public class WorkoutUpdatePage extends BasePage{
         new Input("#Duration").write(workout.getDuration());
         new Input("#Desc").write(workout.getWorkoutDescription());
         new Input("#PostDesc").write(workout.getDuration()); // post workout note results
-        //new Input("#Pace").write(workout.getPace()); TODO добавить pace в WorkoutFactory
-        //new Dropdown("#ActivityType").selectOption(workout.getActivityType());
         $(By.xpath(String.format(activitySubType, workout.getActivitySubType()))).click();
         $(By.xpath(String.format(howIFeltRadio, workout.getHowIFelt()))).click();
         new Dropdown("#DistType").selectOption(workout.getDistanceMeasure());
@@ -57,7 +58,9 @@ public class WorkoutUpdatePage extends BasePage{
         $("#IsRace").setSelected(workout.isMarkAsRace());
     }
 
+    @Step("Expand all page's tables")
     private void expandAllTables() {
+        log.info("Expand all page's tables");
         $(EXPAND_COLLAPSE_TABLE_POST_WORKOUT_NOTES).click();
         $(EXPAND_COLLAPSE_TABLE_EQUIPMENT).click();
         $(EXPAND_COLLAPSE_TABLE_ROUTES).click();
@@ -73,6 +76,7 @@ public class WorkoutUpdatePage extends BasePage{
         log.info("Update Workout button was clicked");
     }
 
+    @Step("Read Field Values From Update Workout Form")
     public Workout readFieldValuesFromUpdateWorkoutForm(){
         Workout workout = Workout.builder().build();
         workout.setDate(new Input("#WorkoutDate").read());

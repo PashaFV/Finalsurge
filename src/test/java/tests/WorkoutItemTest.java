@@ -22,8 +22,6 @@ public class WorkoutItemTest extends BaseTest {
         loginPage.login();
         calendarPage.openPage();
         calendarPage.openQuickAddWorkoutForm();
-        calendarPage.workoutAddHeader().shouldBe(visible);
-
         Workout workout = WorkoutFactory.get();
         calendarPage.createQuickAddWorkout(workout);
         calendarPage.goToUpdateFormOfCreatedWorkout(workout.getWorkoutName());
@@ -52,8 +50,6 @@ public class WorkoutItemTest extends BaseTest {
         loginPage.login();
         calendarPage.openPage();
         calendarPage.openQuickAddWorkoutForm();
-        calendarPage.workoutAddHeader().shouldBe(visible);
-
         Workout workout = WorkoutFactory.get();
         calendarPage.createQuickAddWorkout(workout);
         calendarPage.goToUpdateFormOfCreatedWorkout(workout.getWorkoutName());
@@ -81,12 +77,11 @@ public class WorkoutItemTest extends BaseTest {
         loginPage.login();
         calendarPage.openPage();
         calendarPage.openQuickAddWorkoutForm();
-        calendarPage.workoutAddHeader().shouldBe(visible);
-
         Workout workout = WorkoutFactory.get();
         calendarPage.createQuickAddWorkout(workout);
         calendarPage.goToWorkoutCommentsPopUp(workout.getWorkoutName());
         workoutCommentsPopUp.addComment(workout.getWorkoutComment());
+
         workoutCommentsPopUp.createdComment().shouldHave(text(workout.getWorkoutComment()));
     }
 
@@ -97,12 +92,11 @@ public class WorkoutItemTest extends BaseTest {
         loginPage.login();
         calendarPage.openPage();
         calendarPage.openQuickAddWorkoutForm();
-        calendarPage.workoutAddHeader().shouldBe(visible);
-
         Workout workout = WorkoutFactory.get();
         calendarPage.createQuickAddWorkout(workout);
         calendarPage.goToWorkoutUploadDataPopUp(workout.getWorkoutName());
         workoutUploadDataPopUp.uploadFile(file);
+
         workoutDetailsPage.downloadFileButton().shouldBe(visible);
     }
 
@@ -112,8 +106,6 @@ public class WorkoutItemTest extends BaseTest {
         loginPage.login();
         calendarPage.openPage();
         calendarPage.openQuickAddWorkoutForm();
-        calendarPage.workoutAddHeader().shouldBe(visible);
-
         Workout workout = WorkoutFactory.get();
         Injury injury = InjuryFactory.get();
         calendarPage.createQuickAddWorkout(workout);

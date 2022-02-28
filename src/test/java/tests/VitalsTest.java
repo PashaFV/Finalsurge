@@ -29,7 +29,6 @@ public class VitalsTest  extends BaseTest {
         vitalsPage.createdDailyVitals(vitals.getSleepAmount()).shouldHave(Condition.text(vitals.getSleepAmount()));
         vitalsPage.createdDailyVitals(vitals.getSleepQuality()).shouldHave(Condition.text(vitals.getSleepQuality()));
         vitalsPage.createdDailyVitals(vitals.getStressAmount()).shouldHave(Condition.text(vitals.getStressAmount()));
-        //vitalsPage.createdDailyVitals(vitals.getHealthNotes()).shouldHave(Condition.text(vitals.getHealthNotes())); //TODO update working method for span notes через ИЛИ локатор
     }
 
     @Test(description = "Check if vitals is updated")
