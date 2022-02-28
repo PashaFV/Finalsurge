@@ -31,28 +31,31 @@ public class CalendarPage extends BasePage{
 
     @Step("Open calendar page ")
     public void openPage() {
+        log.info("Open /Calendar page");
         open("/Calendar");
 
     }
-    @Step("Add new quick workout")
+    @Step("Open QUICK ADD WORKOUT form")
     public void openQuickAddWorkoutForm() {
+        log.info("Open QUICK ADD WORKOUT form");
         Actions action = new Actions(getWebDriver());
         action.moveToElement($(ADD_BUTTON)).click().build().perform();
-//        $(ADD_BUTTON).click();
         $(QUICK_ADD_LOCATOR).click();
-
     }
 
+    @Step("Return user_info element")
     public SelenideElement userInfo(){
        return  $(USER_INFO);
     }
 
+    @Step("Return workout add header")
     public SelenideElement workoutAddHeader(){
         return $(WORKOUT_ADD_HEADER);
     }
 
+    @Step("Fill in Quick Add Workout Form")
     public void fillInQuickAddWorkoutForm(Workout workout){
-
+        log.info("Fill in Quick Add Workout Form");
         new Input("#WorkoutDate").write(workout.getDate());
         new Input("#WorkoutTime").write(workout.getTimeOfDay());
         new Input("#Name").write(workout.getWorkoutName());
@@ -60,7 +63,6 @@ public class CalendarPage extends BasePage{
         new Input("#Duration").write(workout.getDuration());
         new Input("#Desc").write(workout.getWorkoutDescription());
         new Input("#PostDesc").write(workout.getDuration());
-        //new Input("#Pace").write(workout.getPace()); TODO добавить pace в WorkoutFactory
         new Dropdown("#ActivityType").selectOption(workout.getActivityType());
         new Dropdown("#DistType").selectOption(workout.getDistanceMeasure());
         new Dropdown("#PaceType").selectOption(workout.getPaceMeasure());
@@ -72,26 +74,33 @@ public class CalendarPage extends BasePage{
         $("#IsRace").setSelected(workout.isMarkAsRace());
     }
 
+    @Step("Clicking on Save workout button")
     public void clickSaveQuickAddWorkout(){
         log.info("Clicking on Save button");
         $("#saveButton").click();
         log.info("Save button was clicked");
     }
 
+    @Step("Logout")
     public void logout() {
+        log.info("Clicking on logout link");
         $(LOGOUT_LINK).click();
     }
 
+    @Step("Create Quick Add Workout")
     public void createQuickAddWorkout(Workout workout) {
         fillInQuickAddWorkoutForm(workout);
         clickSaveQuickAddWorkout();
     }
 
+    @Step("Return success Quick Add Workout To Library Text")
     public SelenideElement successQuickAddWorkoutToLibraryText() {
         return $(SUCCESS_QUICK_ADD_WORKOUT_TEXT);
     }
 
+    @Step("Go to prev month in calendar")
     public void goToPrevMonth() {
+        log.info("Clicking on previous month button");
         $(PREV_MONTH_BUTTON).click();
     }
 
@@ -99,7 +108,9 @@ public class CalendarPage extends BasePage{
         return $(HEADER_MONTH_LINK);
     }
 
+    @Step("Go to Update Form Of Created Workout")
     public void goToUpdateFormOfCreatedWorkout(String workoutName) {
+        log.info("Call context menu of chosen workout");
         $(By.xpath(String.format(chosenWorkout, workoutName))).click();
         deleteCookiesForExpandCollapseTables();
         $(By.xpath(String.format(workoutContextMenuItem, workoutName, "Update Workout"))).click();
@@ -109,26 +120,38 @@ public class CalendarPage extends BasePage{
         return $(By.xpath(String.format(chosenWorkout, workoutName)));
     }
 
+    @Step("Go to Workout Comments PopUp")
     public void goToWorkoutCommentsPopUp(String workoutName){
+        log.info("Call context menu of chosen workout");
         $(By.xpath(String.format(chosenWorkout, workoutName))).click();
+        log.info("Click on Comments in context menu");
         $(By.xpath(String.format(workoutContextMenuItem, workoutName, "Comments"))).click();
         switchTo().frame($("#WorkoutCommentsiFrame"));
     }
 
+    @Step("Go to Workout Upload Data PopUp")
     public void goToWorkoutUploadDataPopUp(String workoutName) {
+        log.info("Call context menu of chosen workout");
         $(By.xpath(String.format(chosenWorkout, workoutName))).click();
+        log.info("Click on Upload Data in context menu");
         $(By.xpath(String.format(workoutContextMenuItem, workoutName, "Upload Data"))).click();
         switchTo().frame($("#WorkoutUploadiFrame"));
     }
 
+    @Step("Go to Workout Pain Injury Report PopUp")
     public void goToWorkoutPainInjuryReportPopUp(String workoutName) {
+        log.info("Call context menu of chosen workout");
         $(By.xpath(String.format(chosenWorkout, workoutName))).click();
+        log.info("Click on Pain & Injury in context menu");
         $(By.xpath(String.format(workoutContextMenuItem, workoutName, "Pain & Injury"))).click();
         switchTo().frame($("#PainInjuryFrame"));
     }
 
+    @Step("Move Workout Element To The Other Date")
     public String moveWorkoutElementToTheOtherDate(String workoutName){
+        log.info("Call context menu of chosen workout");
         $(By.xpath(String.format(chosenWorkout, workoutName))).click();
+        log.info("Click on Move in context menu");
         $(By.xpath(String.format(workoutContextMenuItem, workoutName, "Move"))).click();
         String movingDate = $(WORKOUT_MOVE_DATEPICKER_LAST_ELEMENT).getText();
         $(WORKOUT_MOVE_DATEPICKER_LAST_ELEMENT).click();

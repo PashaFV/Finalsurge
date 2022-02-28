@@ -25,7 +25,6 @@ public class LoginPage extends BasePage {
     public void openPage() {
         log.info("Open site");
         open("/login");
-
     }
 
     @Step("Login as user '{userName}' use password '{password}'")

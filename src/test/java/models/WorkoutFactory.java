@@ -11,7 +11,7 @@ public class WorkoutFactory {
     public static String [] perceivedEfforts = {"1 (Very Light)", "2 (Light)", "3 (Light)", "4 (Moderate)", "5 (Moderate)", "6 (Moderate)", "7 (Hard)", "8 (Hard)", "9 (Very Hard)", "10 (Max Effort)"};
     public static String [] howIFeltMass = {"Great", "Good", "Normal", "Poor", "Terrible"};
     static Faker faker = new Faker();
-    //TODO добавить в get добавление рандомного значения из описанного мной списка в переменную activitySubType, perceivedEffort, howIFelt
+
     public static Workout get(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/dd/yyyy");
         DateTimeFormatter duration = DateTimeFormatter.ofPattern("m:ss");
@@ -27,7 +27,6 @@ public class WorkoutFactory {
                 .distanceMeasure("km")
                 .duration(duration.format(now))
                 .paceMeasure("min/km")
-                //.pace()
                 .howIFelt(howIFeltMass[faker.number().numberBetween(0, howIFeltMass.length)])
                 .perceivedEffort(perceivedEfforts[faker.number().numberBetween(0, perceivedEfforts.length)])
                 .postWorkoutNotesResults(faker.superhero().descriptor())

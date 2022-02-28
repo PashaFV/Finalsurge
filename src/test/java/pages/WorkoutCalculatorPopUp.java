@@ -30,7 +30,6 @@ public class WorkoutCalculatorPopUp extends BasePage {
         log.info("Close Pop-Up workout calculator");
         switchTo().defaultContent();
         $(CLOSE_CALCULATOR_BUTTON).click();
-
     }
 
     public SelenideElement popUpTitleButton() {return $(INTENSITY_TITLE_BUTTON); }
@@ -39,7 +38,6 @@ public class WorkoutCalculatorPopUp extends BasePage {
 
     @Step("Get error message")
     public SelenideElement getErrorMessage(){
-
         return $(ERROR_MESSAGE);
     }
 
