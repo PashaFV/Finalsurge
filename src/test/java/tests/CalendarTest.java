@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.testng.annotations.Report;
 import models.Workout;
 import models.WorkoutFactory;
 import org.openqa.selenium.By;
@@ -13,6 +14,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class CalendarTest extends BaseTest {
+
 
     @Test(description = "Login with valid data to finalsurge.com")
     public void quickAddWorkoutTest() {

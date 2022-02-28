@@ -12,9 +12,14 @@
     <test name="Calculator test">
         <classes>
             <class name="tests.IntensityCalculateTest"/>
+            <class name="tests.HansonsCalculateTest"/>
+            <class name="tests.CaloricCalculateTest"/>
             <class name="tests.OtherCalculatorTest"/>
             <class name="tests.WorkoutCalculatorTest"/>
-            <class name="tests.CaloricCalculateTest"/>
+            <class name="tests.McMillanCalculateTest"/>
+            <class name="tests.PaceCalculateTest"/>
+            <class name="tests.PalladinoCalculateTest"/>
+            <class name="tests.TinmanCalculateTest"/>
         </classes>
     </test> <!-- Test -->
 
@@ -28,6 +33,27 @@
     <test name="Calendar test">
         <classes>
             <class name="tests.CalendarTest"/>
+
+        </classes>
+    </test> <!-- Test -->
+
+    <test name="Dashboard test">
+        <classes>
+            <class name="tests.DashboardTest"/>
+
+        </classes>
+    </test> <!-- Test -->
+
+    <test name="Vitals test">
+        <classes>
+            <class name="tests.VitalsTest"/>
+
+        </classes>
+    </test> <!-- Test -->
+
+    <test name="Workout item test">
+        <classes>
+            <class name="tests.WorkoutItemTest"/>
 
         </classes>
     </test> <!-- Test -->

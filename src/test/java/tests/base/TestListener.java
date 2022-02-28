@@ -9,18 +9,17 @@ public class TestListener implements ITestListener {
 
     public void onTestStart(ITestResult result) {
 
-        System.out.printf("Test started:  %s \n", result.getName());
+        log.info("Test started: " + result.getName());
     }
 
     public void onTestSuccess(ITestResult result) {
 
-        System.out.printf("Test success:  %s \n", result.getName());
-
+        log.info("Test success:  " + result.getName());
     }
 
     public void onTestFailure(ITestResult result) {
 
-        System.out.printf("Test failed: %s \n", result.getName());
+        log.info("Test failed: " + result.getName());
         log.info("Take screenshot");
 
     }
