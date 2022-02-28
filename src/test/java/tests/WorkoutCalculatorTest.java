@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class WorkoutCalculatorTest extends BaseTest {
 
-    @Test(description = "Open workout calculator pop-up")
+    @Test(description = "Open workout calculator pop-up", priority = 1)
     public void openWorkoutCalculatorTest() {
 
         loginPage.openPage();
@@ -17,7 +17,7 @@ public class WorkoutCalculatorTest extends BaseTest {
 
     }
 
-    @Test(description = "Close workout calculator pop-up")
+    @Test(description = "Close workout calculator pop-up", priority = 2)
     public void closeWorkoutCalculatorTest() {
 
         loginPage.openPage();

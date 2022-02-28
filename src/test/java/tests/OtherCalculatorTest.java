@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class OtherCalculatorTest extends BaseTest {
 
-    @Test(description = "Open other calculator pop-up")
+    @Test(description = "Open other calculator pop-up", priority = 1)
     public void openWorkoutCalculatorTest() {
 
         loginPage.openPage();
@@ -17,7 +17,7 @@ public class OtherCalculatorTest extends BaseTest {
 
     }
 
-    @Test(description = "Close other calculator pop-up")
+    @Test(description = "Close other calculator pop-up", priority = 2)
     public void closeWorkoutCalculatorTest() {
 
         loginPage.openPage();

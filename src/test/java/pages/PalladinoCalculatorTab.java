@@ -1,51 +1,46 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import elements.Input;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+@Log4j2
 public class PalladinoCalculatorTab extends WorkoutCalculatorPopUp{
 
     public static final By PALLADINO_TITLE_BUTTON = By.xpath("//a[text()='Palladino']");
-    public static final By CRITICAL_POWER_INPUT = By.xpath("//input[@id='CP']");
-    public static final By RESERVE_WORK_CAPACITY_INPUT = By.xpath("//input[@id='RWC']");
     public static final By CALCULATE_PACES_BUTTON = By.xpath("//input[@value='Calculate Paces']");
+    public static final By POWER_TARGET_VALUE_IN_TABLE = By.xpath("//table[@class='table table-condensed table-hover table-striped']/tbody/tr/td[3]");
 
-    public static final By MINUTES_INPUT = By.xpath("//input[@id='TimeMM']");
-    public static final By SECONDS_INPUT = By.xpath("//input[@id='TimeSS']");
-    public static final By SHORT_TEST_AVG_POWER_INPUT = By.xpath("//input[@id='AVPWS']");
-    public static final By LONG_TEST_AVG_POWER_INPUT = By.xpath("//input[@id='AVPWL']");
-    public static final By LONG_MINUTES_INPUT = By.xpath("//input[@id='TimeMML']");
-    public static final By LONG_SECONDS_INPUT = By.xpath("//input[@id='TimeSSL']");
     public static final By ESTIMATE_RESULTS_BUTTON = By.xpath("//input[@id='saveButtonSettings2']");
+    public static final By ESTIMATE_CP_VALUE_IN_TABLE = By.xpath("//table[@class='table table-condensed table-hover table-striped']/tbody/tr/td[1]");
 
-    public static final By RACE_TIME_HOURS_INPUT = By.xpath("//input[@id='TimeHHR']");
-    public static final By RACE_TIME_MINUTES_INPUT = By.xpath("//input[@id='TimeMMR']");
-    public static final By RACE_TIME_SECONDS_INPUT = By.xpath("//input[@id='TimeSSR']");
-    public static final By RACE_AVG_POWER_INPUT = By.xpath("//input[@id='RAP']");
     public static final By ESTIMATE_RESULTS_BUTTON_SECOND = By.xpath("//input[@id='saveButtonSettings3']");
+    public static final By ESTIMATE_CP_OR_FTP_VALUE_IN_TABLE = By.xpath("//table[@class='table table-condensed table-hover table-striped']/tbody/tr/td[2]");
+    public static final By ESTIMATE_CP_OR_FTP_RANGE_VALUE_IN_TABLE = By.xpath("//table[@class='table table-condensed table-hover table-striped']/tbody/tr/td[2]");
 
-    public static final By RRACE_TIME_MINUTES_INPUT = By.xpath("//input[@id='TimeMMRR']");
-    public static final By RRACE_TIME_SECONDS_INPUT = By.xpath("//input[@id='TimeSSRR']");
-    public static final By RRACE_AVG_POWER_INPUT = By.xpath("//input[@id='RAPR']");
     public static final By ESTIMATE_RESULTS_BUTTON_THIRD = By.xpath("//input[@id='saveButtonSettings4']");
-
-
-    public static final By YOUR_WORKOUT_PACES_TABLE = By.xpath("//table[@class='table table-condensed table-hover']/tbody/tr/td");
     public static final By INTERVAL_POWER_TARGETS_HEADER = By.xpath("//h4[text()='Interval Power Targets']");
 
-
-//PALLADINO POWER PROJECT - INTERVAL POWER TARGET CALCULATOR
-    @Step("Calculation interval power target by Palladino power project")
-    public void calculatePalladinoPower() {
-
+    @Step("Open Palladino calculator tab")
+    public void openPalladinoTab() {
+        log.info("Open Palladino calculator tab in workout calculator");
         $(PALLADINO_TITLE_BUTTON).click();
-        $(CRITICAL_POWER_INPUT).setValue("100");
-        $(RESERVE_WORK_CAPACITY_INPUT).setValue("10");
+    }
+
+
+    //PALLADINO POWER PROJECT - INTERVAL POWER TARGET CALCULATOR
+    @Step("Calculation interval power target by Palladino power project")
+    public void calculatePalladinoIntervalPower() {
+
+        log.info("Calculation interval power target by Palladino power project");
+        new Input("#CP").write("100");
+        new Input("#RWC").write("10");
         $(CALCULATE_PACES_BUTTON).click();
 
     }
@@ -53,46 +48,63 @@ public class PalladinoCalculatorTab extends WorkoutCalculatorPopUp{
     @Step("Calculation interval power target with invalid data")
     public void invalidCalculatePalladinoPower() {
 
-        $(PALLADINO_TITLE_BUTTON).click();
-        $(CRITICAL_POWER_INPUT).setValue("10");
-        $(RESERVE_WORK_CAPACITY_INPUT).setValue("10");
+        log.info("Calculation interval power target with invalid data");
+        new Input("#CP").write("10");
+        new Input("#RWC").write("10");
         $(CALCULATE_PACES_BUTTON).click();
 
     }
 
-//PALLADINO POWER PROJECT - CP AND RWC FROM A CP TEST
-    @Step("Calculation estimate from the duration and power data of two test components")
-    public void calcululatePalladinoEstimate() {
+    //PALLADINO POWER PROJECT - CP AND RWC FROM A CP TEST
+    @Step("Estimate result from the duration and power data of two test components")
+    public void cpAndRwcPalladinoEstimate() {
 
-        $(MINUTES_INPUT).setValue("10");
-        $(SECONDS_INPUT).setValue("00");
-        $(SHORT_TEST_AVG_POWER_INPUT).setValue("100");
-        $(LONG_MINUTES_INPUT).setValue("12");
-        $(LONG_SECONDS_INPUT).setValue("00");
-        $(LONG_TEST_AVG_POWER_INPUT).setValue("100");
+        log.info("Estimate result from the duration and power data of two test components");
+        new Input("#TimeMM").write("10");
+        new Input("#TimeSS").write("00");
+        new Input("#AVPWS").write("100");
+        new Input("#TimeMML").write("12");
+        new Input("#TimeSSL").write("00");
+        new Input("#AVPWL").write("100");
         $(ESTIMATE_RESULTS_BUTTON).click();
 
     }
 
-//PALLADINO POWER PROJECT - CP FROM RACE OR TT >= 40 MINUTES
-    @Step("Calculation estimate range for CP/FTP from race/TT duration and power from 40 minutes")
-    public void calcululateEstimateFromRaceFromFourtyMinutes() {
+    @Step("Estimate result from the duration and power with invalid data")
+    public void invalidCpAndRwcPalladinoEstimate() {
 
-        $(RACE_TIME_HOURS_INPUT).setValue("1");
-        $(RACE_TIME_MINUTES_INPUT).setValue("10");
-        $(RACE_TIME_SECONDS_INPUT).setValue("00");
-        $(RACE_AVG_POWER_INPUT).setValue("100");
+        log.info("Estimate result from the duration and power with invalid dat");
+        new Input("#TimeMM").write("10");
+        new Input("#TimeSS").write("00");
+        new Input("#AVPWS").write("100");
+        new Input("#TimeMML").write("12");
+        new Input("#TimeSSL").write("00");
+        new Input("#AVPWL").write("10");
+        $(ESTIMATE_RESULTS_BUTTON).click();
+
+    }
+
+    //PALLADINO POWER PROJECT - CP FROM RACE OR TT >= 40 MINUTES
+    @Step("Calculation estimate range for CP/FTP from race/TT duration and power from 40 minutes")
+    public void estimateFromRaceFromFourtyMinutes() {
+
+        log.info("Calculation estimate range for CP/FTP from race/TT duration and power from 40 minutes");
+        new Input("#TimeHHR").write("1");
+        new Input("#TimeMMR").write("10");
+        new Input("#TimeSSR").write("00");
+        new Input("#RAP").write("100");
         $(ESTIMATE_RESULTS_BUTTON_SECOND).click();
 
     }
 
-//PALLADINO POWER PROJECT - CP FROM RACE OR TT <= 40 MINUTES
+    //PALLADINO POWER PROJECT - CP FROM RACE OR TT <= 40 MINUTES
     @Step("Calculation estimate range for CP/FTP from race/TT duration and power up to 40 minutes")
-    public void calcululateEstimateFromRaceUpToFourtyMinutes() {
+    public void estimateFromRaceUpToFourtyMinutes() {
 
-        $(RRACE_TIME_MINUTES_INPUT).setValue("10");
-        $(RRACE_TIME_SECONDS_INPUT).setValue("00");
-        $(RRACE_AVG_POWER_INPUT).setValue("100");
+        log.info("Calculation estimate range for CP/FTP from race/TT duration and power up to 40 minutes");
+        new Input("#TimeMMRR").write("10");
+        new Input("#TimeSSRR").write("00");
+        new Input("#RAPR").write("100");
         $(ESTIMATE_RESULTS_BUTTON_THIRD).click();
 
     }
@@ -103,10 +115,26 @@ public class PalladinoCalculatorTab extends WorkoutCalculatorPopUp{
         return $(INTERVAL_POWER_TARGETS_HEADER);
     }
 
-    //TODO checking shouldHave(text("30:00"));
-    @Step("Checking that the calculations for Interval Power Targets are correct")
-    public SelenideElement сheckingCalculations() {
-        return $(YOUR_WORKOUT_PACES_TABLE);
+    @Step("Checking that the Power Target (W) value was right")
+    public SelenideElement powerTargetValue() {
+        return $(POWER_TARGET_VALUE_IN_TABLE);
     }
+
+    @Step("Checking that the CP (W) value was right")
+    public SelenideElement estimateCPValue() {
+        return $(ESTIMATE_CP_VALUE_IN_TABLE);
+    }
+
+    @Step("Checking that the CP/FTP Estimate (W) value was right")
+    public SelenideElement estimateCpOrFtpValue() {
+        return $(ESTIMATE_CP_OR_FTP_VALUE_IN_TABLE);
+    }
+
+    @Step("Checking that the CP/FTP range (W) value was right")
+    public SelenideElement estimateCpOrFtpRangeValue() {
+        return $(ESTIMATE_CP_OR_FTP_RANGE_VALUE_IN_TABLE);
+    }
+
+
 
 }
