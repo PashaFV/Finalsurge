@@ -13,13 +13,19 @@
         <classes>
             <class name="tests.OtherCalculatorTest"/>
             <class name="tests.WorkoutCalculatorTest"/>
-            <class name="tests.TinmanCalculateTest"/>
         </classes>
     </test> <!-- Test -->
 
     <test name="Workout report test">
         <classes>
             <class name="tests.WorkoutReportTest"/>
+
+        </classes>
+    </test> <!-- Test -->
+
+    <test name="Calendar test">
+        <classes>
+            <class name="tests.CalendarTest"/>
 
         </classes>
     </test> <!-- Test -->

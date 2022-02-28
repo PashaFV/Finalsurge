@@ -1,5 +1,6 @@
 package tests;
 
+import com.codeborne.selenide.testng.annotations.Report;
 import lombok.extern.log4j.Log4j2;
 import models.Account;
 import models.AccountFactory;
