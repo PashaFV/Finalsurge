@@ -23,7 +23,7 @@ public class WorkoutFactory {
                 .activitySubType(activityRunSubTypes[faker.number().numberBetween(0, activityRunSubTypes.length)])
                 .workoutName(faker.esports().event() + duration.format(now))
                 .workoutDescription(faker.weather().description())
-                .distance(String.valueOf(faker.number().numberBetween(1, 10)) + ".00")
+                .distance(String.valueOf(faker.number().numberBetween(1, 10))) // + ".00"
                 .distanceMeasure("km")
                 .duration(duration.format(now))
                 .paceMeasure("min/km")

@@ -43,7 +43,7 @@ public class WorkoutDetailsPage extends BasePage {
     }
 
     public SelenideElement distanceStatisticsBlock(Workout workout){
-        return $(By.xpath(String.format(distanceStatisticsBlock, workout.getDistance(), workout.getDistanceMeasure(), workout.getDuration())));
+        return $(By.xpath(String.format(distanceStatisticsBlock, workout.getDistance() +".00", workout.getDistanceMeasure(), workout.getDuration())));
     }
 
     public SelenideElement paceStatisticsBlock(Workout workout){
