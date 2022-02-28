@@ -2,6 +2,7 @@ package tests.base;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import com.codeborne.selenide.testng.TextReport;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j2;
 
@@ -13,7 +14,7 @@ import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
 
 @Log4j2
-@Listeners(TestListener.class)
+@Listeners({TestListener.class})
 public class BaseTest {
 
     public LoginPage loginPage;
@@ -38,7 +39,7 @@ public class BaseTest {
     public VitalsPage vitalsPage;
     public SignUpPage signUpPage;
 
-    @BeforeMethod
+    @BeforeMethod (description = "Setup options and configurations.")
     public void setUp() {
         log.info("Setup options and configurations.");
 
