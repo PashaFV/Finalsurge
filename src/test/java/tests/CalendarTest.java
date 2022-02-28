@@ -61,7 +61,7 @@ public class CalendarTest extends BaseTest {
         calendarPage.chosenMonth().shouldNotHave(text(originalHeaderDateName));
     }
 
-    @Test(description = "Login with valid data to finalsurge.com")
+    @Test(description = "Check if a workout is moved to another date in the calendar")
     public void workoutShouldBeMovedToAnotherDate() {
         loginPage.openPage();
         loginPage.login();
@@ -73,6 +73,5 @@ public class CalendarTest extends BaseTest {
 
         calendarPage.workoutDate(workout.getWorkoutName()).shouldHave(attribute("data-day", movingDate));
     }
-
 
 }
